@@ -1,0 +1,19 @@
+a:hover {
+    text-decoration: none;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    text-decoration: none;
+    padding-right: 4px;
+    text-align: right;
+}
+
+div .icons {
+    text-align: right;
+}
+
+.icon-1x {
+    font-size: 1em;
+}
+

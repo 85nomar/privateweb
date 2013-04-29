@@ -1,0 +1,1 @@
+<input type="%%COMPONENTTYPE%%" name="%%COMPONENTID%%" id="%%COMPONENTID%%" value="%%COMPONENTVALUE%%">
