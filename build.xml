@@ -1,0 +1,117 @@
+<project name="racore" basedir="." default="phpdoc">
+    <description>
+        This is the build.xml file for project UkOrg.
+    </description>
+
+    <!-- Default structure properties -->
+    <property name="src.dir" location="${basedir}/public_html" />
+    <property name="build.dir" location="${basedir}/build" />
+    <property name="dist.dir" location="${basedir}/dist" />
+    <property name="lib.dir" location="${basedir}/lib" />
+
+    <!-- Build structure properties -->
+    <property name="api.dir" value="${build.dir}/api" />
+    <property name="qa.dir" value="${build.dir}/qa" />
+    <property name="release.dir" value="${build.dir}/release" />
+    <property name="testsuite.dir" value="${build.dir}/testsuite" />
+
+    <!-- Ignored Files -->
+    <property name="ignored.dir" value="*/smarty/*,*/bootstrap/*" />
+
+    <!-- Create and format property today value -->
+    <tstamp>
+        <format property="today" pattern="yyyyMMddHHmmss" locale="en" />
+    </tstamp>
+
+    <!-- Delete folders on build progress -->
+    <target name="cleanup" description="cleanup build folders">
+        <delete dir="${build.dir}" failonerror="true" />
+        <delete dir="${dist.dir}" failonerror="true" />
+    </target>
+
+    <!-- Create new folders on build progress -->
+    <target name="prepare" description="create build folders" depends="cleanup">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${release.dir}" />
+        <mkdir dir="${qa.dir}" />
+        <mkdir dir="${api.dir}" />
+        <mkdir dir="${testsuite.dir}" />
+    </target>
+
+    <!-- Write logging file over all next build steps -->
+    <target name="logging" description="write logging file over next steps" depends="prepare">
+        <record name="${dist.dir}/build.log" loglevel="verbose" append="false" />
+    </target>
+
+    <!-- Parallel Tasks -->
+    <target name="parallel_tasks" depends="logging">
+        <parallel>
+            <antcall target="phpcs" />
+            <antcall target="phpmd" />
+            <antcall target="phpcpd" />
+        </parallel>
+    </target>
+
+    <!-- PHP Checkstyle -->
+    <target name="phpcs" description="create php checkstyle report">
+        <exec executable="phpcs">
+            <arg line="--report=checkstyle
+					   --report-file=${qa.dir}/checkstyle.xml 
+					   --standard=Zend 
+					   --encoding=utf-8 
+					   --extensions=php 
+					   --ignore=${ignored.dir} 
+					   ${src.dir}/" />
+        </exec>
+    </target>
+
+    <!-- PHP Mess Detector -->
+    <target name="phpmd" description="create php pmd report">
+        <exec executable="phpmd">
+            <arg line="${src.dir}/ xml codesize,unusedcode,naming
+					   --reportfile ${qa.dir}/pmd.xml 
+					   --suffixes php 
+					   --exclude ${ignored.dir}" />
+        </exec>
+    </target>
+
+    <!-- PHP Copy Paste Detection -->
+    <target name="phpcpd" description="create php cpd report">
+        <exec executable="phpcpd">
+            <arg line="--log-pmd ${qa.dir}/cpd.xml
+					   --exclude ${ignored.dir} 
+					   ${src.dir}/" />
+        </exec>
+    </target>
+
+    <!-- PHP Depend -->
+    <target name="phpdepend" description="create php depend report">
+        <exec executable="pdepend">
+            <arg line="--bad-documentation
+					   --suffix=php 
+					   --jdepend-xml=${qa.dir}/pdepend.xml
+					   --exclude=${ignored.dir}
+					   ${src.dir}" />
+        </exec>
+    </target>
+
+    <!-- PHP Documentor -->
+    <target name="phpdoc" description="generate API documentation" depends="create_release">
+        <exec executable="phpdoc">
+            <arg line="--directory ${release.dir}
+					   --target ${api.dir}
+					   --title '${ant.project.name} API'
+					   --ignore ${ignored.dir}
+					   --output HTML:frames:default" />
+        </exec>
+    </target>
+
+    <!-- Create current release -->
+    <target name="create_release" description="create current release" depends="parallel_tasks">
+        <copy todir="${release.dir}" failonerror="true">
+            <fileset dir="${src.dir}" />
+        </copy>
+    </target>
+
+</project>
