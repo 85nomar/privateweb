@@ -49,6 +49,15 @@ class LIBBul
     {
         $lbooReturn = false;
 
+        $lbul = new BULCoreBul();
+        $lbulright = new BULCoreRight();
+        $labul = $lbul->getDbl()->getWhere(
+            'strName=\''.LIBCore::getGet('strBul').'\''
+        );
+        $laright = $lbulright->getDbl()->getWhere(
+            'numBulID='.$labul[0]['numBulID'].' AND strCode=\'ZUGANG\''
+        );
+
         /**
          * Rechteanpassung wenn benötigt
          */
@@ -64,7 +73,8 @@ class LIBBul
         /**
          * Zugangsberechtigt
          */
-        if (!LIBCore::hasRight('ZUGANG')) {
+        if (!LIBCore::hasRight('ZUGANG')
+            AND count($laright) > 0) {
             $pstrData = 'accessdenied';
         }
 
