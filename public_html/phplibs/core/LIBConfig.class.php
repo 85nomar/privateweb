@@ -142,7 +142,7 @@ final class LIBConfig
      */
     private static function _getServerName()
     {
-        return (string)$_SERVER['SERVER_NAME'];
+        return (string) $_SERVER['SERVER_NAME'];
     }
 
     /**

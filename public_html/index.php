@@ -66,8 +66,13 @@ try {
     /**
      * Datenbankverbindung-Aufbauen
      */
-    LIBDB::setup('localhost', 'racore2', 'racore', 'racoretest');
-    LIBDB::connect(); // @TODO
+    LIBDB::setup(
+        LIBConfig::getServer(),
+        LIBConfig::getDatabase(),
+        LIBConfig::getUser(),
+        LIBConfig::getPassword()
+    );
+    LIBDB::connect();
 
 
     /**
