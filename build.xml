@@ -1,4 +1,4 @@
-<project name="racore" basedir="." default="phpdoc">
+<project name="privateweb" basedir="." default="phpdoc">
     <description>
         This is the build.xml file for project UkOrg.
     </description>
