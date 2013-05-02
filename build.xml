@@ -16,7 +16,7 @@
     <property name="testsuite.dir" value="${build.dir}/testsuite" />
 
     <!-- Ignored Files -->
-    <property name="ignored.dir" value="*/smarty/*,*/bootstrap/*" />
+    <property name="ignored.dir" value="*/smarty/*,*/bootstrap/*,*/PHPWord-0.6.2/*" />
 
     <!-- Create and format property today value -->
     <tstamp>
