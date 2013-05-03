@@ -22,6 +22,8 @@ class LIBFeldaufbau
      */
     private $_arrFelder = array();
 
+    private $_arrFields = array();
+
     /**
      * Gibt den Inhalt des gewünschten Feldes zurück
      *
@@ -73,6 +75,40 @@ class LIBFeldaufbau
             }
         }
         return $lbreturn;
+    }
+
+    public function setField($pstrName, $pfield)
+    {
+        $lbreturn = false;
+        if ($pstrName != '') {
+            $this->_arrFields[$pstrName] = $pfield;
+            $lbreturn = true;
+        }
+        return $lbreturn;
+    }
+
+    /**
+     * @param $pstrName
+     *
+     * @return bool|LIBFeldaufbauFeld
+     */
+    public function getField($pstrName) {
+        $lfld = false;
+        if (isset($this->_arrFields[$pstrName])) {
+            $lfld = $this->_arrFields[$pstrName];
+        }
+        return $lfld;
+    }
+
+
+    public function setFeldValue($pstrName, $pstrTyp, $pstrValue)
+    {
+        $lbooReturn = true;
+        if (!isset($this->_arrFelder[$pstrName])) {
+            $this->_arrFelder[$pstrName] = array();
+        }
+        $this->_arrFelder[$pstrName][$pstrTyp] = $pstrValue;
+        return $lbooReturn;
     }
 
     /**

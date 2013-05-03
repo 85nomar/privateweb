@@ -1,9 +1,9 @@
 <?php
 namespace racore\dbl\core\df;
 
+use racore\phplibs\core\LIBCore;
 use racore\phplibs\core\LIBDB;
 use racore\phplibs\core\LIBDbl;
-use racore\phplibs\core\LIBFeldaufbau;
 
 /**
  * Database-Layer vom Core-User
@@ -23,9 +23,13 @@ class DBLCoreUser extends LIBDbl
      */
     public function __construct()
     {
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreUser');
         $this->setTablename('core_df_user');
+        $this->setOrderBy('strName');
+        $this->_createFeldaufbau();
+        $lfab = $this->getFeldaufbau();
+        $lfab->getField('numUserID')->strValid = 'INTEGER';
+        $lfab->getField('strName')->strValid = 'STRING';
+        $lfab->getField('strPassword')->strValid = 'STRINGOREMPTY';
     }
 
     /**

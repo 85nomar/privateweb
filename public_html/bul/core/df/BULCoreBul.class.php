@@ -1,7 +1,9 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreBul;
 use racore\phplibs\core\LIBBul;
+use racore\phplibs\core\LIBCore;
 use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
 
@@ -23,16 +25,12 @@ class BULCoreBul extends LIBBul
      */
     public function __construct()
     {
-        $ldbl = new LIBDbl();
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreBul');
-        $ldbl->setTablename('core_df_bul');
-        $ldbl->setOrderBy('strName');
-        $ldbl->setFeldaufbau($lfab);
+        $ldbl = new DBLCoreBul();
         $this->setDbl($ldbl);
     }
 
+    protected function _listMask1()
+    {
+    }
 
 }

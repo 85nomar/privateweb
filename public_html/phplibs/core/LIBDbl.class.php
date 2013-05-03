@@ -268,6 +268,32 @@ class LIBDbl
         return $lbreturn;
     }
 
+    protected  function _createFeldaufbau()
+    {
+        $lbooReturn = false;
+        $lfab = new LIBFeldaufbau();
+        if ($larrFormat = LIBDB::getFieldInformations($this->getTablename())) {
+
+            $lbooReturn = true;
+            foreach ($larrFormat AS $lstrKey => $larrValue) {
+                $lfld = new LIBFeldaufbauFeld();
+                $lstr = preg_replace('/\([0-9]+\)/', "", $larrValue['Type']);
+                $lfld->strType = $lstr;
+                $lnum = preg_replace(
+                    '/([A-Za-z0-9])+\({1}|(\)){1}/',
+                    '',
+                    (integer) $larrValue['Length']
+                );
+                $lfld->numLength = $lnum;
+                if (!$lfab->setField($lstrKey, $lfld)) {
+                    $lbooReturn = false;
+                }
+            }
+        }
+        $this->setFeldaufbau($lfab);
+        return $lbooReturn;
+    }
+
     /**
      * Führt einen Insert Befehl auf die Datenbank aus
      *
