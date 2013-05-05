@@ -38,6 +38,30 @@ class LIBBul
      */
     private $_uil = null;
 
+    private $_strFormTemplate = '';
+
+    private $_strListTemplate = '';
+
+    public function getFormTemplate()
+    {
+        return $this->_strFormTemplate;
+    }
+
+    public function setFormTemplate($pstrTemplate)
+    {
+        $this->_strFormTemplate = $pstrTemplate;
+    }
+
+    public function getListTemplate()
+    {
+        return $this->_strListTemplate;
+    }
+
+    public function setListTemplate($pstrTemplate)
+    {
+        $this->_strListTemplate = $pstrTemplate;
+    }
+
     /**
      * Bestimmt das Routing mit den erhaltenen Daten
      *
@@ -266,6 +290,7 @@ class LIBBul
             'strAction' => LIBCore::getBaseLink(true).'&strAction=insert'
         );
         $larrDataTwo = array(
+            'strTemplate' => $this->getFormTemplate(),
             'arrContent' => $larrData,
             'arrNavigation' => $this->_getNavigation()
         );
@@ -294,6 +319,7 @@ class LIBBul
             'arrBreadcrumb' => $this->_getBreadCrumbListMask()
         );
         $larrDataTwo = array(
+            'strTemplate' => $this->getListTemplate(),
             'arrContent' => $larrData,
             'arrNavigation' => $this->_getNavigation()
         );
@@ -342,30 +368,27 @@ class LIBBul
      */
     protected function _updateMask($parrData, $pbooOnError = false)
     {
+        $larrData = $parrData;
+        unset($parrData);
         $lbooReturn = false;
         $luilRouter = new UIL_router();
         $ldbl = $this->getDbl();
         /** @var LIBFeldaufbau $lfab  */
         $lfab = $ldbl->getFeldaufbau();
-        $larrFelder = $lfab->getFelder();
-
+        $larrFields = $lfab->getFields();
         if (!$pbooOnError) {
             $larrWhere = array();
-            $larrData = array();
-            foreach ($larrFelder AS $lstrValue) {
-                if (isset($parrData[$lstrValue['strDatabaseField']])) {
-                    $lstrDBFieldVal = $parrData[$lstrValue['strDatabaseField']];
-                    $lstrDBField = $lstrValue['strDatabaseField'];
-                    array_push(
-                        $larrWhere, $lstrDBField. ' = '.$lstrDBFieldVal
-                    );
-                    $larrData[$lstrValue['strDatabaseField']] = $lstrDBFieldVal;
+            foreach ($larrFields AS $lstrKey => $larrValue) {
+                if (isset($larrData[$lstrKey])) {
+                    array_push($larrWhere, $lstrKey .' = '.$larrData[$lstrKey]);
                 }
             }
+
             $larrDBLData = $this->_dbl->getWhere(implode($larrWhere, ' AND '));
             if (count($larrDBLData) > 0) {
                 $larrDBLData[0] = $this->_loadArrayData($larrDBLData[0]);
             }
+            $larrDBLData = $larrDBLData[0];
             $lstrLink = LIBCore::getBaseLink(true).'&strAction=';
             $larrBreadcrumb = array();
             $larrData = array();
@@ -385,14 +408,16 @@ class LIBBul
         } else {
             $larrData = array(
                 'strTyp' => 'form',
-                'arrData' => array($parrData),
+                'arrData' => array($larrData),
                 'arrBreadcrumb' => $this->_getBreadcrumb(),
                 'strAction' => LIBCore::getBaseLink(true).'&strAction=update'
             );
         }
         $larrDataTwo = array(
+            'strTemplate' => $this->getFormTemplate(),
             'arrContent' => $larrData,
-            'arrNavigation' => $this->_getNavigation()
+            'arrNavigation' => $this->_getNavigation(),
+            'strAction' => LIBCore::getBaseLink(true).'&strAction=update'
         );
         $luilRouter->setDbl($this->getDbl());
         $luilRouter->route($larrDataTwo);

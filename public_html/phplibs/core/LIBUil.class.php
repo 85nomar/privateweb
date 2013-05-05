@@ -35,6 +35,12 @@ class LIBUil
     private $_strTemplate = '';
 
     /**
+     * @var \Smarty|null
+     *
+     */
+    private $_smarty = null;
+
+    /**
      * Gibt den Feldaufbau zurück
      *
      * @return LIBFeldaufbau|null
@@ -43,6 +49,28 @@ class LIBUil
     public function getFeldaufbau()
     {
         return $this->_fabFeldaufbau;
+    }
+
+    /**
+     * Gibt das Smarty Objekt zurück
+     *
+     * @return null|\Smarty
+     * @access public
+     */
+    public function getSmarty()
+    {
+        return $this->_smarty;
+    }
+
+    /**
+     * Setzt das Smarty Objekt
+     *
+     * @param $psmarty
+     * @access public
+     */
+    public function setSmarty($psmarty)
+    {
+        $this->_smarty = $psmarty;
     }
 
     /**
@@ -96,6 +124,21 @@ class LIBUil
             $this->_strTemplate = $pstrTemplate;
         }
         return $lbooReturn;
+    }
+
+    protected function _loadMainAssign()
+    {
+        $lsmarty = $this->getSmarty();
+        $lsmarty->clearAllAssign();
+        $ldbllabels = new LIBDbl();
+        $ldbllabels->setTablename('core_df_label');
+        $ldbllabels->setOrderBy('strName');
+        $lalabels = $ldbllabels->getAll();
+        foreach ($lalabels AS $laValue) {
+            $lsmarty->assign('L_'.$laValue['strName'], $laValue['strLabel']);
+        }
+        $lsmarty->assign('G_BASELINK', LIBCore::getBaseLink(true));
+        $this->setSmarty($lsmarty);
     }
 
 

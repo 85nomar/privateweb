@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex,nofollow">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <link href="uil/html/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="uil/html/libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-        <link type="text/css" href="uil/html/libs/jquery/css/jqueryui.min.css" rel="Stylesheet" />
-        <link rel="stylesheet" href="uil/html/libs/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="uil/core/html/libs/bootstrap-2.3.1/css/bootstrap.min.css"  media="screen">
+        <link rel="stylesheet" href="uil/core/html/libs/bootstrap-2.3.1/css/bootstrap-responsive.min.css"  media="screen">
+        <link rel="Stylesheet" href="uil/core/html/libs/jquery-1.9.1/css/jqueryui-1.10.2.min.css"  />
+        <link rel="stylesheet" href="uil/core/html/libs/fontawesome-3.0.2/css/font-awesome.min.css">
         <link rel="stylesheet" href="uil/html/libs/racore/css/racore.css">
         {if $cssdebugger==1}
-            <link href="uil/html/libs/misc/css/holmes.min.css" rel="stylesheet" media="screen">
+            <link rel="stylesheet" href="uil/core/html/libs/holmes-1.0.45/css/holmes.css"  media="screen">
         {/if}
      </head>
     <body {if $cssdebugger==1}class="holmes-debug"{/if}>
@@ -71,9 +71,9 @@
         </div>
 
     </div>
-    <script type="text/javascript" src="uil/html/libs/jquery/js/jquery.js"></script>
-    <script type="text/javascript" src="uil/html/libs/jquery/js/jqueryui.min.js"></script>
-    <script src="uil/html/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="uil/core/html/libs/jquery-1.9.1/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="uil/core/html/libs/jquery-1.9.1/js/jquery-ui-1.10.2.min.js"></script>
+    <script type="text/javascript" src="uil/core/html/libs/bootstrap-2.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="uil/html/libs/racore/js/racore.js"></script>
     <script type="text/javascript" src="uil/html/libs/racore/js/plugins/tablesort.plugins.js"></script>
     <script type="text/javascript" src="uil/html/libs/racore/js/plugins/pagination.plugins.js"></script>

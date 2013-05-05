@@ -56,6 +56,16 @@ class LIBFeldaufbau
         return $lareturn;
     }
 
+
+    public function getFields()
+    {
+        $lareturn = false;
+        if (is_array($this->_arrFields)) {
+            $lareturn = $this->_arrFields;
+        }
+        return $lareturn;
+    }
+
     /**
      * Setzt ein einzelnes Feld in den Feldaufbau
      *

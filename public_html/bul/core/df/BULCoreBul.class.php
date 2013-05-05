@@ -27,10 +27,8 @@ class BULCoreBul extends LIBBul
     {
         $ldbl = new DBLCoreBul();
         $this->setDbl($ldbl);
-    }
-
-    protected function _listMask1()
-    {
+        $this->setListTemplate('bul_list.tpl');
+        $this->setFormTemplate('bul_form.tpl');
     }
 
 }

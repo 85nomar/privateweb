@@ -202,26 +202,23 @@ class LIBDbl
      */
     public function delete($parrData)
     {
-        if (LIBValid::isArray($parrData)) {
+        $larrData = $parrData;
+        unset($parrData);
+        if (LIBValid::isArray($larrData)) {
             $lfab = $this->getFeldaufbau();
-            $larrFelder = $lfab->getFelder();
+            $larrFields = $lfab->getFields();
             $larrWhere = array();
-            $larrData = array();
-            foreach ($larrFelder AS $lstrValue) {
-                if (isset($parrData[$lstrValue['strDatabaseField']])
-                ) {
-                    array_push(
-                        $larrWhere, $lstrValue['strDatabaseField'] . ' = :'
-                        . $lstrValue['strDatabaseField']
-                    );
-                    $larrData[$lstrValue['strDatabaseField']]
-                        = $parrData[$lstrValue['strDatabaseField']];
+            $larrDataDelete = array();
+            foreach ($larrFields AS $lstrKey => $larrValue) {
+                if (isset($larrData[$lstrKey])) {
+                    array_push($larrWhere, $lstrKey .' = :'.$lstrKey);
+                    $larrDataDelete[$lstrKey] = $larrData[$lstrKey];
                 }
             }
             $lstrQuery = 'DELETE FROM ' . $this->getTablename() . '
                           WHERE ' . implode($larrWhere, " AND ");
             $larrFormat = LIBDB::getFieldInformations($this->getTablename());
-            if (LIBDB::query($lstrQuery, $larrData, $larrFormat)) {
+            if (LIBDB::query($lstrQuery, $larrDataDelete, $larrFormat)) {
                 $larrSuccess = array();
                 $larrSuccess['type'] = 'success';
                 $larrSuccess['strLabel'] = LIBCore::getLabel('DELETESUCCESS');
@@ -304,26 +301,40 @@ class LIBDbl
      */
     public function insert($parrData)
     {
+        $larrData = $parrData;
+        unset($parrData);
+        $larrUser = LIBCore::getSession('arrUser');
         $lfab = $this->getFeldaufbau();
-        $larrFelder = $lfab->getFelder();
-        if (!$lfab->isValidData($parrData)) {
+        $larrFields = $lfab->getFields();
+        /** @var LIBFeldaufbauFeld $lfield */
+        $lfield = null;
+
+        if (!$lfab->isValidData($larrData)) {
             return false;
-        } else if (LIBValid::isArray($parrData)) {
+        } else if (LIBValid::isArray($larrData)) {
             $larrInsertKeys = array();
             $larrInsertValues = array();
-            foreach ($larrFelder AS $lstrValue) {
-                if (isset($parrData[$lstrValue['strDatabaseField']])) {
-                    array_push($larrInsertKeys, $lstrValue['strDatabaseField']);
-                    array_push(
-                        $larrInsertValues, ':' . $lstrValue['strDatabaseField']
-                    );
+            foreach ($larrFields AS $lstrKey => $larrField) {
+                if (    $lstrKey !== 'numCreatorID'
+                    AND $lstrKey !== 'numEditorID'
+                    AND $lstrKey !== 'datCreate'
+                    AND $lstrKey !== 'datTimestamp'
+                    AND $lstrKey !== 'numBulID') {
+                    array_push($larrInsertKeys, $lstrKey);
+                    array_push($larrInsertValues, ':'.$lstrKey);
                 }
             }
+            array_push($larrInsertKeys, 'numCreatorID');
+            array_push($larrInsertValues, ':numCreatorID');
+            $larrData['numCreatorID'] = $larrUser['numUserID'];
+            array_push($larrInsertKeys, 'datCreate');
+            array_push($larrInsertValues, ':datCreate');
+            $larrData['datCreate'] = date('Y-m-d H:i:s');
             $lstrQuery = 'INSERT INTO ' . $this->getTablename() . '
                             (' . implode($larrInsertKeys, ',') . ') VALUES
                             (' . implode($larrInsertValues, ',') . ') ';
             $larrFormat = LIBDB::getFieldInformations($this->getTablename());
-            if (LIBDB::query($lstrQuery, $parrData, $larrFormat)) {
+            if (LIBDB::query($lstrQuery, $larrData, $larrFormat)) {
                 $larrSuccess = array();
                 $larrSuccess['type'] = 'success';
                 $larrSuccess['strLabel'] = LIBCore::getLabel('INSERTSUCCESS');
@@ -351,28 +362,33 @@ class LIBDbl
      */
     public function update($parrData)
     {
+        $larrData = $parrData;
+        unset($parrData);
+        $larrUser = LIBCore::getSession('arrUser');
         $lfab = $this->getFeldaufbau();
-        $larrFelder = $lfab->getFelder();
-        if (!$lfab->isValidData($parrData)) {
+        $larrFields = $lfab->getFields();
+        if (!$lfab->isValidData($larrData)) {
             return false;
-        } else if (LIBValid::isArray($parrData)) {
+        } else if (LIBValid::isArray($larrData)) {
             $lstrPrimaryKey = LIBDB::getPrimaryKeyName($this->getTablename());
             $larrSet = array();
-            foreach ($larrFelder AS $lstrValue) {
-                if (isset($parrData[$lstrValue['strDatabaseField']])
-                ) {
-                    array_push(
-                        $larrSet, $lstrValue['strDatabaseField'] . ' = :'
-                        . $lstrValue['strDatabaseField']
-                    );
+            foreach ($larrFields AS $lstrKey => $larrField) {
+                if (    $lstrKey !== 'numCreatorID'
+                    AND $lstrKey !== 'numEditorID'
+                    AND $lstrKey !== 'datCreate'
+                    AND $lstrKey !== 'datTimestamp'
+                    AND $lstrKey !== 'numBulID') {
+                    array_push($larrSet, $lstrKey . " = :" .$lstrKey);
                 }
             }
+            array_push($larrSet, 'numEditorID = :numEditorID');
+            $larrData['numEditorID'] = $larrUser['numEditorID'];
             $lstrQuery = "UPDATE " . $this->getTablename() . "
                           SET " . implode($larrSet, ',') . "
                           WHERE " . $lstrPrimaryKey . " = :" . $lstrPrimaryKey
                 . " ";
             $larrFormat = LIBDB::getFieldInformations($this->getTablename());
-            if (LIBDB::query($lstrQuery, $parrData, $larrFormat)) {
+            if (LIBDB::query($lstrQuery, $larrData, $larrFormat)) {
                 $larrSuccess = array();
                 $larrSuccess['type'] = 'success';
                 $larrSuccess['strLabel'] = LIBCore::getLabel('UPDATESUCCESS');
