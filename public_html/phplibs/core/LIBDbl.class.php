@@ -80,7 +80,7 @@ class LIBDbl
         $lstrQuery = 'SELECT ' . $pstrCodeField . ' AS code,
                              CONCAT(' . implode(", ' ', ", $larrValueFields) . ') AS value,
                              IF(' . $pstrCodeField . ' =
-                                ' . $pstrSelectedCode . ', 1, 0) AS selected
+                                ' . (integer) $pstrSelectedCode . ', 1, 0) AS selected
                       FROM ' . $this->getTablename() . '
                       ORDER BY value';
         if (LIBDB::query($lstrQuery)) {
@@ -318,8 +318,7 @@ class LIBDbl
                 if (    $lstrKey !== 'numCreatorID'
                     AND $lstrKey !== 'numEditorID'
                     AND $lstrKey !== 'datCreate'
-                    AND $lstrKey !== 'datTimestamp'
-                    AND $lstrKey !== 'numBulID') {
+                    AND $lstrKey !== 'datTimestamp') {
                     array_push($larrInsertKeys, $lstrKey);
                     array_push($larrInsertValues, ':'.$lstrKey);
                 }

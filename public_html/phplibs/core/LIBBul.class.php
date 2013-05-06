@@ -280,6 +280,7 @@ class LIBBul
             foreach ($larrFab AS $lstrKey => $larrField) {
                 $larrDBLData[$lstrKey] = '';
             }
+            $larrDBLData = $this->_loadArrayData($larrDBLData);
         }
         $lstrLink = LIBCore::getBaseLink(true).'&strAction=';
         $larrBreadcrumb = array();
@@ -300,7 +301,8 @@ class LIBBul
         $larrDataTwo = array(
             'strTemplate' => $this->getFormTemplate(),
             'arrContent' => $larrData,
-            'arrNavigation' => $this->_getNavigation()
+            'arrNavigation' => $this->_getNavigation(),
+            'strAction' => LIBCore::getBaseLink(true).'&strAction=insert'
         );
         $luilRouter->setDbl($this->getDbl());
         $luilRouter->route($larrDataTwo);
@@ -391,12 +393,13 @@ class LIBBul
                     array_push($larrWhere, $lstrKey .' = '.$larrData[$lstrKey]);
                 }
             }
-
             $larrDBLData = $this->_dbl->getWhere(implode($larrWhere, ' AND '));
             if (count($larrDBLData) > 0) {
                 $larrDBLData[0] = $this->_loadArrayData($larrDBLData[0]);
+                $larrDBLData = $larrDBLData[0];
+            } else {
+                $larrDBLData = $this->_loadArrayData($larrDBLData);
             }
-            $larrDBLData = $larrDBLData[0];
             $lstrLink = LIBCore::getBaseLink(true).'&strAction=';
             $larrBreadcrumb = array();
             $larrData = array();

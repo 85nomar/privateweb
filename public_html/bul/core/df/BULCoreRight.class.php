@@ -1,6 +1,7 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreRight;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
@@ -23,7 +24,16 @@ class BULCoreRight extends LIBBul
      */
     public function __construct()
     {
-        $ldbl = new LIBDbl();
+
+        $ldbl = new DBLCoreRight();
+        $this->setDbl($ldbl);
+        $this->setListTemplate('right_list.tpl');
+        $this->setFormTemplate('right_form.tpl');
+
+
+        //$ldbl = new LIBDbl();
+
+        /*
 
         // @TODO
         $lfab = new LIBFeldaufbau();
@@ -32,6 +42,7 @@ class BULCoreRight extends LIBBul
         $ldbl->setOrderBy('strName');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
+        */
     }
 
     /**
