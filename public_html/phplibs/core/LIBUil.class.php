@@ -1,5 +1,7 @@
 <?php
 namespace racore\phplibs\core;
+use racore\dbl\core\df\QYCoreLabel;
+use racore\dbl\core\df\QYCoreRight;
 use racore\phplibs\core\LIBValid AS LIBValid;
 use racore\phplibs\core\LIBDB AS LIBDB;
 
@@ -128,15 +130,48 @@ class LIBUil
 
     protected function _loadMainAssign()
     {
+        $larrUser = LIBCore::getSession('arrUser');
         $lsmarty = $this->getSmarty();
         $lsmarty->clearAllAssign();
-        $ldbllabels = new LIBDbl();
-        $ldbllabels->setTablename('core_df_label');
-        $ldbllabels->setOrderBy('strName');
-        $lalabels = $ldbllabels->getAll();
+
+        /**
+         * Labels
+         */
+        $ldbllabels = new QYCoreLabel();
+        $lalabels = $ldbllabels->getAllWithBul();
         foreach ($lalabels AS $laValue) {
-            $lsmarty->assign('L_'.$laValue['strName'], $laValue['strLabel']);
+            $lsmarty->assign(
+                'L_'.strtoupper($laValue['strBul']).
+                '_'.$laValue['strName'], $laValue['strLabel']
+            );
+            if ($laValue['strBul'] === 'CoreLabel') {
+                $lsmarty->assign(
+                    'L_'.$laValue['strName'], $laValue['strLabel']
+                );
+            }
         }
+
+        /**
+         * Rechte
+         */
+        $ldblrights = new QYCoreRight();
+        $larights = $ldblrights->getAllWithBulAndHaveRight();
+        foreach ($larights AS $laValue) {
+            $lsmarty->assign(
+                'R_'.strtoupper($laValue['strBul']).
+                '_'.$laValue['strCode'], $laValue['numRight']
+            );
+        }
+
+        /**
+         * Rollen-Rechte
+         */
+        $lnumRollID = 0;
+        if (isset($larrUser['numRollID'])) {
+            $lnumRollID = (integer) $larrUser['numRollID'];
+        }
+        $lsmarty->assign('G_NUMROLLEID', $lnumRollID);
+
         $lsmarty->assign('G_BASELINK', LIBCore::getBaseLink(true));
         $this->setSmarty($lsmarty);
     }

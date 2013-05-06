@@ -271,8 +271,16 @@ class LIBBul
     {
         $lbooReturn = false;
         $luilRouter = new UIL_router();
-        $larrDBLData = $parrData;
-        $larrDBLData = $this->_loadArrayData($larrDBLData);
+        if (count($parrData) > 0) {
+            $larrDBLData = $parrData;
+        } else {
+            $larrDBLData = array();
+            $lfab = $this->getDbl()->getFeldaufbau();
+            $larrFab = $lfab->getFields();
+            foreach ($larrFab AS $lstrKey => $larrField) {
+                $larrDBLData[$lstrKey] = '';
+            }
+        }
         $lstrLink = LIBCore::getBaseLink(true).'&strAction=';
         $larrBreadcrumb = array();
         $larrData = array();
@@ -285,7 +293,7 @@ class LIBBul
         array_push($larrBreadcrumb, $larrData);
         $larrData = array(
             'strTyp' => 'form',
-            'arrData' => array($larrDBLData),
+            'arrData' => $larrDBLData,
             'arrBreadcrumb' => $this->_getBreadCrumbInsertMask(),
             'strAction' => LIBCore::getBaseLink(true).'&strAction=insert'
         );

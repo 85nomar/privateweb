@@ -1,7 +1,7 @@
 /**
  * Initialisierung
  */
-$('.racoretooltip').popover({
+$('.racoretooltip').tooltip({
    trigger: 'hover',
    html: true,
    placement: 'left'

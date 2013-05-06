@@ -27,59 +27,67 @@ class UIL_html_df extends LIBUil
      */
     public function show($parrData)
     {
-        if (LIBValid::isArray($parrData)) {
-
+        $larrData = $parrData;
+        unset($parrData);
+        if (LIBValid::isArray($larrData)) {
 
             $this->setSmarty(new \Smarty());
 
             /**
              * Content-Aufbau
              */
-            $lstrTemplate = $parrData['strTemplate'];
+            $lstrTemplate = '';
+            $lstrAction = '';
+            if (isset($larrData['strTemplate'])) {
+                $lstrTemplate = $larrData['strTemplate'];
+            }
+            if (isset($larrData['strAction'])) {
+                $lstrAction = $larrData['strAction'];
+            }
             if ($lstrTemplate != '') {
                 $lstrContent = $this->getContentTemplate(
-                    $parrData['arrContent'],
+                    $larrData['arrContent'],
                     $lstrTemplate,
-                    $parrData['strAction']
+                    $lstrAction
                 );
             } else {
-                $lstrContent = $this->_getContent($parrData['arrContent']);
+                $lstrContent = $this->_getContent($larrData['arrContent']);
             }
+            $larrData['strContent'] = $lstrContent;
+
+
 
 
             /**
              * Grundaufbau
              */
-            $parrData['strHeader'] = $this->_getHeader();
-            $parrData['strNavigation'] = $this->_getNavigation(
-                $parrData['arrNavigation']
+            $larrData['strNavigation'] = $this->_getNavigation(
+                $larrData['arrNavigation']
             );
-            $parrData['strContent'] = $lstrContent;
-            $parrData['strFooter'] = $this->_getFooter();
 
             /**
              * Messages
              */
             $larrMessages = LIBCore::getMessage();
-            $parrData['strErrorMessage'] = '';
-            $parrData['strWarningMessage'] = '';
-            $parrData['strSuccessMessage'] = '';
-            $parrData['strSystemErrorMessage'] = '';
+            $larrData['strErrorMessage'] = '';
+            $larrData['strWarningMessage'] = '';
+            $larrData['strSuccessMessage'] = '';
+            $larrData['strSystemErrorMessage'] = '';
             foreach ($larrMessages as $larrMessage) {
                 if ($larrMessage['type'] == 'error') {
-                    $parrData['strErrorMessage'] .=
+                    $larrData['strErrorMessage'] .=
                                             $larrMessage['strLabel'].'<br>';
                 }
                 if ($larrMessage['type'] == 'warning') {
-                    $parrData['strWarningMessage'] .=
+                    $larrData['strWarningMessage'] .=
                                             $larrMessage['strLabel'].'<br>';
                 }
                 if ($larrMessage['type'] == 'success') {
-                    $parrData['strSuccessMessage'] .=
+                    $larrData['strSuccessMessage'] .=
                                             $larrMessage['strLabel'].'<br>';
                 }
                 if ($larrMessage['type'] == 'systemerror') {
-                    $parrData['strSystemErrorMessage'] .=
+                    $larrData['strSystemErrorMessage'] .=
                                             $larrMessage['strLabel'].'<br>';
                 }
             }
@@ -89,19 +97,16 @@ class UIL_html_df extends LIBUil
              */
             $lsmarty = new \Smarty();
             $lsmarty->assign('PAGETITLE', LIBCore::getGlobal('strPageTitle'));
-            $lsmarty->assign('HEADER', $parrData['strHeader']);
-            $lsmarty->assign('ERRORMESSAGE', $parrData['strErrorMessage']);
-            $lsmarty->assign('WARNINGMESSAGE', $parrData['strWarningMessage']);
-            $lsmarty->assign('SUCCESSMESSAGE', $parrData['strSuccessMessage']);
+            $lsmarty->assign('ERRORMESSAGE', $larrData['strErrorMessage']);
+            $lsmarty->assign('WARNINGMESSAGE', $larrData['strWarningMessage']);
+            $lsmarty->assign('SUCCESSMESSAGE', $larrData['strSuccessMessage']);
             $lsmarty->assign(
-                'SYSTEMERRORMESSAGE', $parrData['strSystemErrorMessage']
+                'SYSTEMERRORMESSAGE', $larrData['strSystemErrorMessage']
             );
-            $lsmarty->assign('NAVIGATION', $parrData['strNavigation']);
-            $lsmarty->assign('CONTENT', $parrData['strContent']);
-            $lsmarty->assign('FOOTER', $parrData['strFooter']);
+            $lsmarty->assign('NAVIGATION', $larrData['strNavigation']);
+            $lsmarty->assign('CONTENT', $larrData['strContent']);
             $lsmarty->assign('cssdebugger', LIBCore::getConfig('cssdebugger'));
             $lsmarty->display('uil/html/template/smarty/markup.tpl');
-            //return true;
         } else {
             return false;
         }

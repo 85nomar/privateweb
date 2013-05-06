@@ -6,12 +6,16 @@
     <div class="row-fluid actionbar">
         <div class="span4 table-action"><br>
             <div class="btn-group">
-                <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
+
+                    <!-- @TODO : Rechteabfrage integrieren -->
+                    <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
+                    {include 'uil/html/template/core/rightaddremovebutton.tpl'}
+
             </div>
         </div>
         <div class="span4 pagination pagination-centered">
             <ul>
-                <li>test</li>
+                <li>Pagination fehlt</li>
             </ul>
         </div>
         <div class="span4 input-prepend input-append text-right"><br>
@@ -45,6 +49,7 @@
                                 <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numBulID={$larrValue.numBulID}">
                                     <i class="icon-edit"></i>
                                 </a>
+                                &nbsp;&nbsp;
                                 <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numBulID={$larrValue.numBulID}">
                                     <i class="icon-trash"></i>
                                 </a>

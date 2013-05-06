@@ -382,7 +382,7 @@ class LIBDbl
                 }
             }
             array_push($larrSet, 'numEditorID = :numEditorID');
-            $larrData['numEditorID'] = $larrUser['numEditorID'];
+            $larrData['numEditorID'] = $larrUser['numUserID'];
             $lstrQuery = "UPDATE " . $this->getTablename() . "
                           SET " . implode($larrSet, ',') . "
                           WHERE " . $lstrPrimaryKey . " = :" . $lstrPrimaryKey

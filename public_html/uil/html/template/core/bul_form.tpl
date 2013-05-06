@@ -7,7 +7,7 @@
         <input type="hidden" name="numBulID" value="{$larrDaten.numBulID}">
 
         <div class="control-group">
-            <label class="control-label" for="strName">name</label>
+            <label class="control-label" for="strName">{$L_NAME}</label>
             <div class="controls">
                 <div class="input-append">
                     <input type="text" name="strName" value="{$larrDaten.strName}">
@@ -16,12 +16,10 @@
             </div>
         </div>
 
-        <div class="control-group">
-            <div class="controls">
-                <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
-            </div>
-
+        <div class="form-actions">
+                    <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
         </div>
+
 
     </form>
 

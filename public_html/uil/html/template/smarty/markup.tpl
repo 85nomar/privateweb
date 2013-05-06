@@ -17,10 +17,6 @@
      </head>
     <body {if $cssdebugger==1}class="holmes-debug"{/if}>
 
-    <div id="header">
-        {$HEADER}
-    </div>
-
     <br>
     <div class="container-fluid">
 
@@ -62,13 +58,9 @@
         {/if}
 
         <div class="row-fluid">
-
             {$CONTENT}
         </div>
 
-        <div id="footer">
-            {$FOOTER}
-        </div>
 
     </div>
     <script type="text/javascript" src="uil/core/html/libs/jquery-1.9.1/js/jquery-1.9.1.js"></script>
