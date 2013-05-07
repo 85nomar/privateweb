@@ -1,6 +1,7 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreRoll;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
@@ -23,6 +24,12 @@ class BULCoreRoll extends LIBBul
      */
     public function __construct()
     {
+        $ldbl = new DBLCoreRoll();
+        $this->setDbl($ldbl);
+        $this->setListTemplate('roll_list.tpl');
+        $this->setFormTemplate('roll_form.tpl');
+
+        /*
         $ldbl = new LIBDbl();
 
         // @TODO
@@ -32,6 +39,7 @@ class BULCoreRoll extends LIBBul
         $ldbl->setOrderBy('strName');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
+        */
     }
 
 

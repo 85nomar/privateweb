@@ -61,7 +61,6 @@
             {$CONTENT}
         </div>
 
-
     </div>
     <script type="text/javascript" src="uil/core/html/libs/jquery-1.9.1/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="uil/core/html/libs/jquery-1.9.1/js/jquery-ui-1.10.2.min.js"></script>
