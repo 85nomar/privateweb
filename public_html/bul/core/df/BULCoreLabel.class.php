@@ -1,6 +1,7 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreLabel;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
@@ -23,6 +24,12 @@ class BULCoreLabel extends LIBBul
      */
     public function __construct()
     {
+        $ldbl = new DBLCoreLabel();
+        $this->setDbl($ldbl);
+        $this->setListTemplate('label_list.tpl');
+        $this->setFormTemplate('label_form.tpl');
+
+        /*
         $ldbl = new LIBDbl();
 
         // @TODO
@@ -31,6 +38,7 @@ class BULCoreLabel extends LIBBul
         $ldbl->setTablename('core_df_label');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
+        */
     }
 
     /**
