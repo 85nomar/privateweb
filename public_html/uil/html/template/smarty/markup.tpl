@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="stylesheet" href="uil/core/html/libs/bootstrap-2.3.1/css/bootstrap.min.css"  media="screen">
         <link rel="stylesheet" href="uil/core/html/libs/bootstrap-2.3.1/css/bootstrap-responsive.min.css"  media="screen">
-        <link rel="Stylesheet" href="uil/core/html/libs/jquery-1.9.1/css/jqueryui-1.10.2.min.css"  />
+        <link rel="Stylesheet" href="uil/core/html/libs/jquery-1.9.1/css/jquery-ui-1.10.2.min.css"  />
         <link rel="stylesheet" href="uil/core/html/libs/fontawesome-3.0.2/css/font-awesome.min.css">
         <link rel="stylesheet" href="uil/html/libs/racore/css/racore.css">
         {if $cssdebugger==1}

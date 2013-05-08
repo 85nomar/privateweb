@@ -166,13 +166,25 @@ class LIBUil
         /**
          * Rollen-Rechte
          */
+        $larights = $ldblrights->getAllWithBulAndHaveRightForRoll();
+        foreach ($larights AS $laValue) {
+            $lsmarty->assign(
+                'RROLL_'.strtoupper($laValue['strBul']).
+                    '_'.$laValue['strCode'], $laValue['numRight']
+            );
+        }
         $lnumRollID = 0;
         if (isset($larrUser['numRollID'])) {
             $lnumRollID = (integer) $larrUser['numRollID'];
         }
         $lsmarty->assign('G_NUMROLLEID', $lnumRollID);
-
         $lsmarty->assign('G_BASELINK', LIBCore::getBaseLink(true));
+        $lstrBaseLinkAction = LIBCore::getBaseLink(true).
+            '&strAction='.LIBCore::getGet('strAction');
+        $lsmarty->assign(
+            'G_BASELINKACTION',
+            $lstrBaseLinkAction
+        );
         $this->setSmarty($lsmarty);
     }
 

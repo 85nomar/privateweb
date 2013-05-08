@@ -84,7 +84,7 @@ try {
     /**
      * Grund- bzw. Hauptdaten laden
      */
-    LIBCore::setGlobal('strPageTitle', 'raCore');
+    LIBCore::setGlobal('strPageTitle', 'privateweb de martinez - prototype');
     LIBCore::loadLabel();
     LIBCore::loadConfig();
     LIBCore::loadRight();

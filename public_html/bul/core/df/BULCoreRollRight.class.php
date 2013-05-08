@@ -26,7 +26,10 @@ class BULCoreRollRight extends LIBBul
     public function __construct()
     {
         $ldbl = new DBLCoreRollRight();
+        $this->setDbl($ldbl);
 
+
+/*
         // @TODO
         $lfab = new LIBFeldaufbau();
         $lfab->setFeldaufbauByName('BULCoreRollRight');
@@ -34,7 +37,7 @@ class BULCoreRollRight extends LIBBul
         $ldbl->setOrderBy('');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
-
+*/
     }
 
     /**

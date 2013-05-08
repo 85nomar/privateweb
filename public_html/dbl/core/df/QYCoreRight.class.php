@@ -55,4 +55,27 @@ class QYCoreRight extends DBLCoreRight
         return $larrReturn;
     }
 
+    public function getAllWithBulAndHaveRightForRoll()
+    {
+        $lstrQuery = 'SELECT cr.*, cb.strName AS strBul
+                      FROM       '.$this->getTablename().' AS cr
+                      INNER JOIN core_df_bul AS cb
+                        ON cr.numBulID = cb.numBulID';
+        if (LIBDB::query($lstrQuery)) {
+            $larrReturn = LIBDB::getData();
+            foreach ($larrReturn AS $lstrKey => $larrValue) {
+                if (LIBCore::hasRight(
+                    $larrValue['strCode'], $larrValue['strBul'], false
+                )) {
+                    $larrReturn[$lstrKey]['numRight'] = 1;
+                } else {
+                    $larrReturn[$lstrKey]['numRight'] = 0;
+                }
+            }
+        } else {
+            $larrReturn = array();
+        }
+        return $larrReturn;
+    }
+
 }

@@ -52,10 +52,13 @@
                                 <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numRollID={$larrValue.numRollID}">
                                     <i class="icon-edit"></i>
                                 </a>
-                                &nbsp;&nbsp;
                                 <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numRollID={$larrValue.numRollID}">
                                     <i class="icon-trash"></i>
                                 </a>
+                                <a title="{$L_ROLLESIMULIEREN}" href="{$G_BASELINK}&strAction=simulateroll&numRollID={$larrValue.numRollID}">
+                                   <i class="icon-desktop"></i>
+                                </a>
+
                             </div>
 
 

@@ -9,7 +9,7 @@
 
                     <!-- @TODO : Rechteabfrage integrieren -->
                     <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
-                    {include 'uil/html/template/core/rightaddremovebutton.tpl'}
+                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREBUL_INSERT RIGHT='INSERT'}
 
             </div>
         </div>
@@ -49,10 +49,13 @@
                                 <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numBulID={$larrValue.numBulID}">
                                     <i class="icon-edit"></i>
                                 </a>
+                                {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREBUL_UPDATE RIGHT='UPDATE'}
+
                                 &nbsp;&nbsp;
                                 <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numBulID={$larrValue.numBulID}">
                                     <i class="icon-trash"></i>
                                 </a>
+                                {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREBUL_DELETE RIGHT='DELETE'}
                             </div>
 
 

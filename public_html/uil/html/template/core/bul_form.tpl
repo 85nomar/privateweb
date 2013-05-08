@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-actions">
-                    <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
+            <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
         </div>
 
 

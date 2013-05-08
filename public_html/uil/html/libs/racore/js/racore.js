@@ -4,7 +4,20 @@
 $('.racoretooltip').tooltip({
    trigger: 'hover',
    html: true,
-   placement: 'left'
+   placement: function(context, source) {
+       var position = $(source).position();
+       $this = $(this);
+       if (position.left > 515) {
+           return "left";
+       }
+       if (position.left < 515) {
+           return "right";
+       }
+       if (position.top < 110){
+           return "bottom";
+       }
+       return "top";
+   }
 });
 
 

@@ -24,9 +24,12 @@ class DBLCoreRollRight extends LIBDbl
      */
     public function __construct()
     {
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreRollRight');
         $this->setTablename('core_df_rollright');
+        $this->_createFeldaufbau();
+        $lfab = $this->getFeldaufbau();
+        $lfab->getField('numRollRightID')->strValid = 'INTEGER';
+        $lfab->getField('numRightID')->strValid = 'INTEGER';
+        $lfab->getField('numRollID')->strValid = 'INTEGER';
     }
 
 }
