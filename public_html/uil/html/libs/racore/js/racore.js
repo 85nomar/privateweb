@@ -17,7 +17,8 @@ $('.racoretooltip').tooltip({
            return "bottom";
        }
        return "top";
-   }
+   },
+    delay: { show: 200, hide: 500 }
 });
 
 

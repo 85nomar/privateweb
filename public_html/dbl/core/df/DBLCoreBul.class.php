@@ -24,6 +24,7 @@ class DBLCoreBul extends LIBDbl
     public function __construct()
     {
         $this->setTablename('core_df_bul');
+        $this->setOrderBy('strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
         $lfab->getField('numBulID')->strValid = 'INTEGER';

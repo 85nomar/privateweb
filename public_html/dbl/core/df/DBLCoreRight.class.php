@@ -24,12 +24,36 @@ class DBLCoreRight extends LIBDbl
     public function __construct()
     {
         $this->setTablename('core_df_right');
+        $this->setOrderBy('strCode');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
         $lfab->getField('numRightID')->strValid = 'INTEGER';
         $lfab->getField('numBulID')->strValid = 'INTEGER';
         $lfab->getField('strName')->strValid = 'STRING';
         $lfab->getField('strCode')->strValid = 'STRING';
+    }
+
+    /**
+     * Gibt alle Daten der Tabelle in einem Array zurück
+     *
+     * @return array
+     * @access public
+     */
+    public function getAll()
+    {
+        $larrReturn = array();
+        $lstrQuery = 'SELECT cr.*,
+                             cb.strName AS strBulName
+                      FROM ' . $this->getTablename() .' AS cr
+                      INNER JOIN core_df_bul AS cb
+                        ON cr.numBulID = cb.numBulID ';
+        if ($this->getOrderBy() != '') {
+            $lstrQuery .= ' ORDER BY strBulName, ' . $this->getOrderBy();
+        }
+        if (LIBDB::query($lstrQuery)) {
+            $larrReturn = LIBDB::getData();
+        }
+        return $larrReturn;
     }
 
 }

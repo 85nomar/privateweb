@@ -7,9 +7,10 @@
         <div class="span4 table-action"><br>
             <div class="btn-group">
 
-                    <!-- @TODO : Rechteabfrage integrieren -->
+                {if $R_COREROLL_INSERT}
                     <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
-                    {include 'uil/html/template/core/rightaddremovebutton.tpl'}
+                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREROLL_INSERT RIGHT='INSERT'}
+                {/if}
 
             </div>
         </div>
@@ -18,8 +19,10 @@
                 <li>Pagination fehlt</li>
             </ul>
         </div>
-        <div class="span4 input-prepend input-append text-right"><br>
-
+        <div class="input-prepend input-append pull-right"><br>
+            <span id="anzahlgefunden" class="add-on text-right span4">Anzahl: 0</span>
+            <input type='text' id="searchfield" class="input-medium">
+            <button type="button" id="searchbutton" class="btn">{$L_SUCHEN}</button>
         </div>
     </div>
 
@@ -49,15 +52,26 @@
                         <td>{$larrValue.strName}</td>
                         <td>
                             <div class="icons">
-                                <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numRollID={$larrValue.numRollID}">
-                                    <i class="icon-edit"></i>
-                                </a>
-                                <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numRollID={$larrValue.numRollID}">
-                                    <i class="icon-trash"></i>
-                                </a>
-                                <a title="{$L_ROLLESIMULIEREN}" href="{$G_BASELINK}&strAction=simulateroll&numRollID={$larrValue.numRollID}">
-                                   <i class="icon-desktop"></i>
-                                </a>
+
+                                {if $R_COREROLL_UPDATE}
+                                    <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numRollID={$larrValue.numRollID}">
+                                        <i class="icon-edit"></i>
+                                    </a>
+                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREROLL_UPDATE RIGHT='UPDATE'}
+                                {/if}
+
+                                {if $R_COREROLL_DELETE}
+                                    <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numRollID={$larrValue.numRollID}">
+                                        <i class="icon-trash"></i>
+                                    </a>
+                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREROLL_DELETE RIGHT='DELETE'}
+                                {/if}
+
+                                {if $R_COREROLL_DELETE}
+                                    <a title="{$L_ROLLESIMULIEREN}" href="{$G_BASELINK}&strAction=simulateroll&numRollID={$larrValue.numRollID}">
+                                       <i class="icon-desktop"></i>
+                                    </a>
+                                {/if}
 
                             </div>
 

@@ -63,4 +63,24 @@ class BULCoreLabel extends LIBBul
         return $larrData;
     }
 
+    /**
+     * Ändert die Felder mit einem Select für die Anzeige
+     *
+     * @param $parrData
+     * @return array
+     * @access protected
+     */
+    protected function _loadArrayDataForList($parrData)
+    {
+        $ldbl = new LIBDbl();
+        $ldbl->setTablename('core_df_bul');
+        foreach ($parrData AS $lstrKey => $larrData) {
+            if (isset($larrData['numBulID'])) {
+                $larr = $ldbl->getWhere('numBulID = '.$larrData['numBulID']);
+                $parrData[$lstrKey]['numBulID'] = $larr[0]['strName'];
+            }
+        }
+        return $parrData;
+    }
+
 }

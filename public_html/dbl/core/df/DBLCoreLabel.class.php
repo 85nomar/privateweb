@@ -24,12 +24,36 @@ class DBLCoreLabel extends LIBDbl
     public function __construct()
     {
         $this->setTablename('core_df_label');
+        $this->setOrderBy('strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
         $lfab->getField('numLabelID')->strValid = 'INTEGER';
         $lfab->getField('numBulID')->strValid = 'INTEGER';
         $lfab->getField('strName')->strValid = 'STRING';
         $lfab->getField('strLabel')->strValid = 'STRING';
+    }
+
+    /**
+     * Gibt alle Daten der Tabelle in einem Array zurück
+     *
+     * @return array
+     * @access public
+     */
+    public function getAll()
+    {
+        $larrReturn = array();
+        $lstrQuery = 'SELECT cl.*,
+                             cb.strName AS strBulName
+                      FROM ' . $this->getTablename() .' AS cl
+                      INNER JOIN core_df_bul AS cb
+                        ON cl.numBulID = cb.numBulID ';
+        if ($this->getOrderBy() != '') {
+            $lstrQuery .= ' ORDER BY strBulName, ' . $this->getOrderBy();
+        }
+        if (LIBDB::query($lstrQuery)) {
+            $larrReturn = LIBDB::getData();
+        }
+        return $larrReturn;
     }
 
 }

@@ -24,6 +24,7 @@ class DBLCoreRoll extends LIBDbl
     public function __construct()
     {
         $this->setTablename('core_df_roll');
+        $this->setOrderBy('strKuerzel, strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
         $lfab->getField('numRollID')->strValid = 'INTEGER';
