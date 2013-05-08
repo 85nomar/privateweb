@@ -6,11 +6,8 @@
     <div class="row-fluid actionbar">
         <div class="span4 table-action"><br>
             <div class="btn-group">
-
-                    <!-- @TODO : Rechteabfrage integrieren -->
                     <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
                     {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREBUL_INSERT RIGHT='INSERT'}
-
             </div>
         </div>
         <div class="span4 pagination pagination-centered">
@@ -18,8 +15,10 @@
                 <li>Pagination fehlt</li>
             </ul>
         </div>
-        <div class="span4 input-prepend input-append text-right"><br>
-
+        <div class="input-prepend input-append pull-right"><br>
+            <span id="anzahlgefunden" class="add-on text-right span4">Anzahl: 0</span>
+            <input type='text' id="searchfield" class="input-medium">
+            <button type="button" id="searchbutton" class="btn">{$L_SUCHEN}</button>
         </div>
     </div>
 

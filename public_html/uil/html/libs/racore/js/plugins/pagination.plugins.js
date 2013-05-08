@@ -142,11 +142,9 @@
                 anzahltext = anzahltext + ' / '+ '<span class="text-info">'+total+'</span>';
             }
             $('#anzahlgefunden').html('Anzahl: '+anzahltext);
-
         },
 
         search: function(suchbegriff) {
-            console.log('suche '+suchbegriff);
             var data = $();
             pagedata.each(function() {
                 var zeilentext = $(this).text();
