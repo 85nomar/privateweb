@@ -1,6 +1,7 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreConfig;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
@@ -23,14 +24,10 @@ class BULCoreConfig extends LIBBul
      */
     public function __construct()
     {
-        $ldbl = new LIBDbl();
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreConfig');
-        $ldbl->setTablename('core_df_config');
-        $ldbl->setFeldaufbau($lfab);
+        $ldbl = new DBLCoreConfig();
         $this->setDbl($ldbl);
+        $this->setListTemplate('config_list.tpl');
+        $this->setFormTemplate('config_form.tpl');
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreMenu;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBCore;
 use racore\phplibs\core\LIBDbl;
@@ -24,6 +25,12 @@ class BULCoreMenu extends LIBBul
      */
     public function __construct()
     {
+        $ldbl = new DBLCoreMenu();
+        $this->setDbl($ldbl);
+        $this->setListTemplate('menu_list.tpl');
+        $this->setFormTemplate('menu_form.tpl');
+
+        /*
         $ldbl = new LIBDbl();
 
         // @TODO
@@ -33,6 +40,7 @@ class BULCoreMenu extends LIBBul
         $ldbl->setOrderBy('numOrder');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
+        */
     }
 
     /**
