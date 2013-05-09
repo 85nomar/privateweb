@@ -92,6 +92,7 @@ final class LIBDB
     {
         $lbooReturn = false;
         self::$_objLIBDB = null;
+        self::$_objLIBDB = null;
         self::$_objReference = null;
         self::$_objStatement = null;
         return $lbooReturn;

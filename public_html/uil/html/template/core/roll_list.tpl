@@ -5,24 +5,26 @@
 
     <div class="row-fluid actionbar">
         <div class="span4 table-action"><br>
-            <div class="btn-group">
-
-                {if $R_COREROLL_INSERT}
-                    <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
-                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREROLL_INSERT RIGHT='INSERT'}
-                {/if}
-
+            {if $R_COREROLL_INSERT}
+                <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
+                {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREROLL_INSERT RIGHT='INSERT'}
+            {/if}
+        </div>
+        <div class="span4 table-pagination">
+            <div class="pagination pagination-centered">
+                <ul>
+                    <li>Pagination fehlt</li>
+                </ul>
             </div>
         </div>
-        <div class="span4 pagination pagination-centered">
-            <ul>
-                <li>Pagination fehlt</li>
-            </ul>
-        </div>
-        <div class="input-prepend input-append pull-right"><br>
-            <span id="anzahlgefunden" class="add-on text-right span4">Anzahl: 0</span>
-            <input type='text' id="searchfield" class="input-medium">
-            <button type="button" id="searchbutton" class="btn">{$L_SUCHEN}</button>
+        <div class="span4 table-search">
+            <div class="input-prepend input-append pull-right"><br>
+                <span id="anzahlgefunden" class="add-on">Anzahl: 0</span>
+                <input type='search' id="searchfield" class="input-medium">
+                <span class="add-on racoretooltip" title="{$L_SUCHEN}">
+                    <i class="icon-search"></i>
+                </span>
+            </div>
         </div>
     </div>
 
@@ -68,7 +70,7 @@
                                 {/if}
 
                                 {if $R_COREROLL_DELETE}
-                                    <a title="{$L_ROLLESIMULIEREN}" href="{$G_BASELINK}&strAction=simulateroll&numRollID={$larrValue.numRollID}">
+                                    <a class="racoretooltip" title="{$L_ROLLESIMULIEREN}" href="{$G_BASELINK}&strAction=simulateroll&numRollID={$larrValue.numRollID}">
                                        <i class="icon-desktop"></i>
                                     </a>
                                 {/if}

@@ -375,8 +375,7 @@ class LIBDbl
                 if (    $lstrKey !== 'numCreatorID'
                     AND $lstrKey !== 'numEditorID'
                     AND $lstrKey !== 'datCreate'
-                    AND $lstrKey !== 'datTimestamp'
-                    AND $lstrKey !== 'numBulID') {
+                    AND $lstrKey !== 'datTimestamp') {
                     array_push($larrSet, $lstrKey . " = :" .$lstrKey);
                 }
             }

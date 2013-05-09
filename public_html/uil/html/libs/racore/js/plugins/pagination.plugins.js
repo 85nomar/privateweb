@@ -37,13 +37,13 @@
 
         events: function() {
 
-            $("#searchbutton").on('click', function() {
+            $(".icon-search").on('click', function() {
                 $(this).pagination('search', $('#searchfield').val());
                 $(this).tablesort('init');
             });
             $("#searchfield").on('keypress', function(event) {
                 if ( event.which == 13) {
-                    $("#searchbutton").trigger('click');
+                    $(".icon-search").trigger('click');
                 }
             });
 

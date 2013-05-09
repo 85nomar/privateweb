@@ -4,7 +4,7 @@
     {include 'uil/html/template/core/breadcrumb.tpl'}
 
     <form class="form-horizontal" action="{$strFormAction}" method="POST">
-        <input type="hidden" name="numRightID" value="{$larrDaten.numBulID}">
+        <input type="hidden" name="numRightID" value="{$larrDaten.numRightID}">
 
         <div class="control-group">
             <label class="control-label" for="strName">{$L_BUSINESSLAYER}</label>
