@@ -48,6 +48,7 @@ spl_autoload_register(array("\\racore\phplibs\core\LIBAutoload", "loadClass"));
  */
 if (!LIBConfig::setConfigByConfigFile()) {
     echo "Error on Loading the Config-File";
+    exit;
 }
 
 /**
