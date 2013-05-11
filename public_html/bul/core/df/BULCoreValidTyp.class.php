@@ -1,6 +1,7 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreValidtyp;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
@@ -23,6 +24,12 @@ class BULCoreValidTyp extends LIBBul
      */
     public function __construct()
     {
+        $ldbl = new DBLCoreValidtyp();
+        $this->setDbl($ldbl);
+        $this->setListTemplate('validtyp_list.tpl');
+        $this->setFormTemplate('validtyp_form.tpl');
+
+        /*
         $ldbl = new LIBDbl();
 
         // @TODO
@@ -31,6 +38,7 @@ class BULCoreValidTyp extends LIBBul
         $ldbl->setTablename('core_df_validtyp');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
+        */
     }
 
 
