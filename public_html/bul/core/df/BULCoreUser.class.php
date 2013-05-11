@@ -1,6 +1,7 @@
 <?php
 namespace racore\bul\core\df;
 
+use racore\dbl\core\df\DBLCoreUser;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
@@ -23,6 +24,12 @@ class BULCoreUser extends LIBBul
      */
     public function __construct()
     {
+        $ldbl = new DBLCoreUser();
+        $this->setDbl($ldbl);
+        $this->setListTemplate('user_list.tpl');
+        $this->setFormTemplate('user_form.tpl');
+
+        /*
         $ldbl = new LIBDbl();
 
         // @TODO
@@ -31,6 +38,7 @@ class BULCoreUser extends LIBBul
         $ldbl->setTablename('core_df_user');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
+        */
     }
 
 }
