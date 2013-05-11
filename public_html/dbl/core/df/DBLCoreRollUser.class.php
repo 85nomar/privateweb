@@ -7,7 +7,7 @@ use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
 
 /**
- * Database-Layer vom Core-Rollright
+ * Database-Layer vom Core-Rolluser
  *
  * @author      Raffael Wyss <raffael.wyss@gmail.com>
  * @since       24.04.13

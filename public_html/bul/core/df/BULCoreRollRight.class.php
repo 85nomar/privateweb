@@ -8,7 +8,7 @@ use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
 
 /**
- * Das ist der Business-Layer vom Feldaufbau
+ * Das ist der Business-Layer von der Rollenrechte
  *
  * @author      Raffael Wyss <raffael.wyss@gmail.com>
  * @since       22.04.13

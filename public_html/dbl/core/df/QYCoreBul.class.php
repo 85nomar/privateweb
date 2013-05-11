@@ -6,7 +6,7 @@ use racore\phplibs\core\LIBDB;
 use racore\phplibs\core\LIBDbl;
 
 /**
- * Database-Layer vom Core-User
+ * QUERY vom Core-User
  *
  * @author      Raffael Wyss <raffael.wyss@gmail.com>
  * @since       08.04.13

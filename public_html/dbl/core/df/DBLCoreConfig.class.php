@@ -6,10 +6,10 @@ use racore\phplibs\core\LIBDB;
 use racore\phplibs\core\LIBDbl;
 
 /**
- * Database-Layer vom Core-User
+ * Database-Layer von der Konfiguration
  *
  * @author      Raffael Wyss <raffael.wyss@gmail.com>
- * @since       08.04.13
+ * @since       09.05.13
  * @version     1.0.0
  * @copyright   Copyright (c) 2013, Raffael Wyss
  * @package     Core

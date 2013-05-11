@@ -7,7 +7,7 @@ use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBFeldaufbau;
 
 /**
- * Das ist der Business-Layer vom Feldaufbau
+ * Das ist der Business-Layer vom Right
  *
  * @author      Raffael Wyss <raffael.wyss@gmail.com>
  * @since       21.04.13
