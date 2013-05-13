@@ -454,6 +454,9 @@ class LIBCore
                     case 'str':
                         $lobjData = (string) $lobjValue;
                         break;
+                    case 'arr':
+                        $lobjData = (array) $lobjValue;
+                        break;
                     default:
                         $lobjData = null;
                         break;

@@ -24,9 +24,9 @@ class DBLCoreRollUser extends LIBDbl
      */
     public function __construct()
     {
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreRollUser');
         $this->setTablename('core_df_rolluser');
+        $this->setOrderBy('strName');
+        $this->_createFeldaufbau();
     }
 
 }

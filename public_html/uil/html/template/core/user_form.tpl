@@ -26,6 +26,17 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <label class="control-label" for="strRoll">{$L_ROLLE}</label>
+            <div class="controls">
+                {foreach $larrDaten.larrRollen AS $larrRolle}
+                    <label class="checkbox">
+                        <input name="arrRoll[]" type="checkbox" value="{$larrRolle.numRollID}" {if $larrRolle.selected}checked{/if}>{$larrRolle.strName}
+                    </label>
+                {/foreach}
+            </div>
+        </div>
+
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
         </div>

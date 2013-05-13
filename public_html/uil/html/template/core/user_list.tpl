@@ -67,6 +67,13 @@
                                     {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREUSER_DELETE RIGHT='DELETE'}
                                 {/if}
 
+                                {if $R_COREUSER_SIMULIEREN}
+                                    <a class="racoretooltip" title="{$L_SIMULIEREN}" href="{$G_BASELINK}&strAction=simulate&numUserID={$larrValue.numUserID}">
+                                        <i class="icon-desktop"></i>
+                                    </a>
+                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREUSER_SIMULIEREN RIGHT='DELETE'}
+                                {/if}
+
                             </div>
                         </td>
                     </tr>
