@@ -58,6 +58,41 @@ class QYCoreUser extends DBLCoreUser
         return $lbooReturn;
     }
 
+    /**
+     * Führt ein Update durch
+     *
+     * @param $parrData
+     *
+     * @return boolean
+     * @access public
+     */
+    public function update($parrData)
+    {
+        $lbooReturn = false;
+        $larrData = $parrData;
+        $larrUser = $parrData;
+        unset($larrUser['arrRoll']);
+        unset($parrData);
+
+        if (parent::update($larrUser)) {
+            $lnumUserID = $larrData['numUserID'];
+            $ldblRollUser = new DBLCoreRollUser();
+            $ldblRollUser->deleteWhere('numUserID = ' . $lnumUserID);
+            LIBCore::cleanMessage(-1);
+            $larrRoll =  $larrData['arrRoll'];
+            foreach ($larrRoll AS $lnumRollID) {
+                $larrDataRoll = array();
+                $larrDataRoll['numRollUserID'] = 0;
+                $larrDataRoll['numRollID'] = $lnumRollID;
+                $larrDataRoll['numUserID'] = $lnumUserID;
+                $ldblRollUser->insert($larrDataRoll);
+                LIBCore::cleanMessage(-1);
+            }
+            $lbooReturn = true;
+        }
+        return $lbooReturn;
+    }
+
 
     /**
      * Für einen Delete aus
@@ -74,12 +109,11 @@ class QYCoreUser extends DBLCoreUser
         if (LIBValid::isArray($larrData)) {
             if (isset($larrData['numUserID'])) {
                 $lnumUserID = (integer) $larrData['numUserID'];
-                $lstrQuery = 'DELETE FROM core_df_rolluser
-                              WHERE numUserID = :numUserID ';
-                $larrDat = array();
-                $larrDat['numUserID'] = $lnumUserID;
-                if (LIBDB::query($lstrQuery, $larrDat)) {
-                    return parent::delete($larrData);
+                $ldblRollUser = new DBLCoreRollUser();
+                if ($ldblRollUser->deleteWhere('numUserID = ' . $lnumUserID)) {
+                    $lbooReturn = parent::delete($larrData);
+                    LIBCore::cleanMessage(-1);
+                    return $lbooReturn;
                 }
             } else {
                 return false;

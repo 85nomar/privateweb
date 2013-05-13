@@ -237,6 +237,34 @@ class LIBDbl
     }
 
     /**
+     * Löscht alles gemäss dem WHERE
+     *
+     * @param $pstrWhere
+     * @return boolean
+     * @access protected
+     */
+    protected function deleteWhere($pstrWhere)
+    {
+        $lstrWhere = $pstrWhere;
+        unset($pstrWhere);
+        $lstrQuery = 'DELETE FROM '.$this->getTablename().'
+                      WHERE '.$lstrWhere;
+        if (LIBDB::query($lstrQuery)) {
+            $larrSuccess = array();
+            $larrSuccess['type'] = 'success';
+            $larrSuccess['strLabel'] = LIBCore::getLabel('DELETESUCCESS');
+            LIBCore::setMessage($larrSuccess);
+            return true;
+        } else {
+            $larrSuccess = array();
+            $larrSuccess['type'] = 'error';
+            $larrSuccess['strLabel'] = LIBCore::getLabel('DELETEERROR');
+            LIBCore::setMessage($larrSuccess);
+            return false;
+        }
+    }
+
+    /**
      * Bestimmt den Feldaufbau anhand der angegebenen Datenbanktabelle
      *
      * @return boolean
