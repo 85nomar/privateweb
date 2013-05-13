@@ -10,8 +10,8 @@
             <label class="control-label" for="strKuerzel">{$L_KUERZEL}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strKuerzel" value="{$larrDaten.strKuerzel}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="text" name="strKuerzel" maxlength="{$larrDaten.strKuerzelMaxLength}" value="{$larrDaten.strKuerzel}">
+                    <span title="{$larrDaten.strKuerzelHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
@@ -20,8 +20,8 @@
             <label class="control-label" for="strName">{$L_NAME}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strName" value="{$larrDaten.strName}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="text" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
+                    <span title="{$larrDaten.strNameHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>

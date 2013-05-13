@@ -42,16 +42,17 @@ class QYCoreUser extends DBLCoreUser
                 $larrUser = $larrUser[0];
                 $lnumUserID = $larrUser['numUserID'];
                 $ldblRollUser = new DBLCoreRollUser();
-                $larrRoll =  $larrData['arrRoll'];
-                foreach ($larrRoll AS $lnumRollID) {
-                    $larrDataRoll = array();
-                    $larrDataRoll['numRollUserID'] = 0;
-                    $larrDataRoll['numRollID'] = $lnumRollID;
-                    $larrDataRoll['numUserID'] = $lnumUserID;
-                    $ldblRollUser->insert($larrDataRoll);
-                    LIBCore::cleanMessage(-1);
+                if (isset($larrData['arrRoll']))  {
+                    $larrRoll =  $larrData['arrRoll'];
+                    foreach ($larrRoll AS $lnumRollID) {
+                        $larrDataRoll = array();
+                        $larrDataRoll['numRollUserID'] = 0;
+                        $larrDataRoll['numRollID'] = $lnumRollID;
+                        $larrDataRoll['numUserID'] = $lnumUserID;
+                        $ldblRollUser->insert($larrDataRoll);
+                        LIBCore::cleanMessage(-1);
+                    }
                 }
-
             }
             $lbooReturn = true;
         }
@@ -79,14 +80,16 @@ class QYCoreUser extends DBLCoreUser
             $ldblRollUser = new DBLCoreRollUser();
             $ldblRollUser->deleteWhere('numUserID = ' . $lnumUserID);
             LIBCore::cleanMessage(-1);
-            $larrRoll =  $larrData['arrRoll'];
-            foreach ($larrRoll AS $lnumRollID) {
-                $larrDataRoll = array();
-                $larrDataRoll['numRollUserID'] = 0;
-                $larrDataRoll['numRollID'] = $lnumRollID;
-                $larrDataRoll['numUserID'] = $lnumUserID;
-                $ldblRollUser->insert($larrDataRoll);
-                LIBCore::cleanMessage(-1);
+            if (isset($larrData['arrRoll'])) {
+                $larrRoll =  $larrData['arrRoll'];
+                foreach ($larrRoll AS $lnumRollID) {
+                    $larrDataRoll = array();
+                    $larrDataRoll['numRollUserID'] = 0;
+                    $larrDataRoll['numRollID'] = $lnumRollID;
+                    $larrDataRoll['numUserID'] = $lnumUserID;
+                    $ldblRollUser->insert($larrDataRoll);
+                    LIBCore::cleanMessage(-1);
+                }
             }
             $lbooReturn = true;
         }

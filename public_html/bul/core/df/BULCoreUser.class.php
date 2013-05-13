@@ -5,6 +5,8 @@ use racore\dbl\core\df\QYCoreRoll;
 use racore\dbl\core\df\QYCoreUser;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBCore;
+use racore\phplibs\core\LIBFeldaufbau;
+use racore\phplibs\core\LIBFeldaufbauFeld;
 use racore\uil\router\UIL_router;
 
 /**
@@ -56,7 +58,9 @@ class BULCoreUser extends LIBBul
         } else {
             $larrDBLData = array();
             $lfab = $this->getDbl()->getFeldaufbau();
+            /** @var  $larrFab */
             $larrFab = $lfab->getFields();
+            /** @var LIBFeldaufbauFeld $larrField */
             foreach ($larrFab AS $lstrKey => $larrField) {
                 $larrDBLData[$lstrKey] = '';
             }
@@ -75,6 +79,7 @@ class BULCoreUser extends LIBBul
         $larrData['link'] = '';
         $larrData['label'] = LIBCore::getLabel('ERSTELLEN');
         array_push($larrBreadcrumb, $larrData);
+        $larrDBLData = $this->_prepareDataForView($larrDBLData);
         $larrData = array(
             'strTyp' => 'form',
             'arrData' => $larrDBLData,
@@ -113,6 +118,7 @@ class BULCoreUser extends LIBBul
         $larrFields = $lfab->getFields();
         if (!$pbooOnError) {
             $larrWhere = array();
+            /** @var LIBFeldaufbauFeld $larrValue */
             foreach ($larrFields AS $lstrKey => $larrValue) {
                 if (isset($larrData[$lstrKey])) {
                     array_push($larrWhere, $lstrKey .' = '.$larrData[$lstrKey]);
@@ -131,6 +137,10 @@ class BULCoreUser extends LIBBul
             $larrDBLData['larrRollen'] = $ldblroll->getRollenForUsers(
                 $larrDBLData['numUserID']
             );
+            /** @var LIBFeldaufbauFeld $larrValue */
+            foreach ($larrFields AS $lstrKey => $larrValue) {
+                $larrDBLData[$lstrKey.'Helptext'] = $larrValue->strHelptext;
+            }
             $lstrLink = LIBCore::getBaseLink(true).'&strAction=';
             $larrBreadcrumb = array();
             $larrData = array();
@@ -141,6 +151,7 @@ class BULCoreUser extends LIBBul
             $larrData['link'] = '';
             $larrData['label'] = LIBCore::getLabel('BEARBEITEN');
             array_push($larrBreadcrumb, $larrData);
+            $larrDBLData = $this->_prepareDataForView($larrDBLData);
             $larrData = array(
                 'strTyp' => 'form',
                 'arrData' => $larrDBLData,

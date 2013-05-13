@@ -18,8 +18,7 @@
                             </option>
                         {/foreach}
                     </select>
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
-                </div>
+                 </div>
             </div>
         </div>
 
@@ -34,7 +33,6 @@
                             </option>
                         {/foreach}
                     </select>
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
@@ -43,8 +41,8 @@
             <label class="control-label" for="strName">{$L_NAME}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strName" value="{$larrDaten.strName}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="text" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
+                    <span title="{$larrDaten.strNameHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
@@ -53,8 +51,8 @@
             <label class="control-label" for="strLink">{$L_LINK}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strLink" value="{$larrDaten.strLink}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="text" name="strLink" maxlength="{$larrDaten.strLinkMaxLength}" value="{$larrDaten.strLink}">
+                    <span title="{$larrDaten.strLinkHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
@@ -63,8 +61,8 @@
             <label class="control-label" for="strIcon">{$L_ICON}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strIcon" value="{$larrDaten.strIcon}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="text" name="strIcon" maxlength="{$larrDaten.strIconMaxLength}" value="{$larrDaten.strIcon}">
+                    <span title="{$larrDaten.strIconHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
@@ -73,8 +71,8 @@
             <label class="control-label" for="strRight">{$L_RECHT}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strRight" value="{$larrDaten.strRight}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="text" name="strRight" maxlength="{$larrDaten.strRightMaxLength}" value="{$larrDaten.strRight}">
+                    <span title="{$larrDaten.strRightHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>

@@ -18,5 +18,6 @@ class LIBFeldaufbauFeld
     public $numLength = 0;
     public $strType = '';
     public $strValid = '';
+    public $strHelptext = '';
 
 }

@@ -292,6 +292,7 @@ class LIBBul
         $larrData['link'] = '';
         $larrData['label'] = LIBCore::getLabel('ERSTELLEN');
         array_push($larrBreadcrumb, $larrData);
+        $larrDBLData = $this->_prepareDataForView($larrDBLData);
         $larrData = array(
             'strTyp' => 'form',
             'arrData' => $larrDBLData,
@@ -410,6 +411,7 @@ class LIBBul
             $larrData['link'] = '';
             $larrData['label'] = LIBCore::getLabel('BEARBEITEN');
             array_push($larrBreadcrumb, $larrData);
+            $larrDBLData = $this->_prepareDataForView($larrDBLData);
             $larrData = array(
                 'strTyp' => 'form',
                 'arrData' => $larrDBLData,
@@ -671,6 +673,26 @@ class LIBBul
         $lfab->checkRight();
         $this->getDbl()->setFeldaufbau($lfab);
         return $lbooReturn;
+    }
+
+    protected function _prepareDataForView($parrData)
+    {
+        $larrData = $parrData;
+        unset($parrData);
+        $lfab = $this->getDbl()->getFeldaufbau();
+        $larrFab = $lfab->getFields();
+        /** @var LIBFeldaufbauFeld $lfeld */
+        foreach ($larrFab AS $lstrKey => $lfeld) {
+            $lstrHelptext = $lfeld->strHelptext;
+            if ($lstrHelptext == '') {
+                $larr = array();
+                $larr['numLength'] = $lfeld->numLength;
+                $lstrHelptext = LIBCore::getLabel('MAXLENGTHFROM', $larr);
+            }
+            $larrData[$lstrKey.'Helptext'] = $lstrHelptext;
+            $larrData[$lstrKey.'MaxLength'] = $lfeld->numLength;
+        }
+        return $larrData;
     }
 
 }

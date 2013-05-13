@@ -10,8 +10,8 @@
             <label class="control-label" for="strName">{$L_NAME}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strName" value="{$larrDaten.strName}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="text" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
+                    <span title="{$larrDaten.strNameHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
@@ -20,8 +20,8 @@
             <label class="control-label" for="strPassword">{$L_PASSWORD}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="password" name="strPassword" value="{$larrDaten.strPassword}">
-                    <span title="test" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
+                    <input type="password" name="strPassword" maxlength="{$larrDaten.strPasswordMaxLength}" value="{$larrDaten.strPassword}">
+                    <span title="{$larrDaten.strPasswordHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
