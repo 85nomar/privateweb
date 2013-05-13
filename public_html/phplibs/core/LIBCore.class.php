@@ -244,12 +244,18 @@ class LIBCore
     /**
      * Lösche alle Errors aus dem Zwischenspeicher
      *
+     * @param integer $pnumMessage Welche Errors gelöscht werden sollen
+     * -1 = Letztes
      * @return bool
      * @static
      */
-    public static function cleanMessage()
+    public static function cleanMessage($pnumMessage = -100)
     {
-        self::$_arrMessage = array();
+        if ($pnumMessage == -1) {
+            unset(self::$_arrMessage[count(self::$_arrMessage) - 1]);
+        } else {
+            self::$_arrMessage = array();
+        }
         return true;
     }
 
