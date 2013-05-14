@@ -15,13 +15,44 @@
             <li class="dropdown">
                 {if isset($larrSubCPoint.hasrightedit) AND $larrSubCPoint.hasrightedit}
                     {if $larrSubCPoint.hasright}
-                        <a href="{$larrSubCPoint.strRightRemoveLink}"><i class="icon-minus-sign"></i><i class="icon-1x {$larrSubCPoint.icon}"></i> {$larrSubCPoint.label} entfernen</a>
+                        <a href="{$larrSubCPoint.strRightRemoveLink}">
+                            <i class="icon-minus-sign"></i>
+                            {if $larrSubCPoint.icon === ''}
+                                <i class="icon-sign-blank icon-hidden"></i>
+                            {else}
+                                <i class="icon-1x {$larrSubCPoint.icon}"></i>
+                            {/if}
+                            {$larrSubCPoint.label} entfernen
+                        </a>
                     {else}
-                        <a href="{$larrSubCPoint.strRightAddLink}"><i class="icon-plus-sign"></i><i class="icon-1x {$larrSubCPoint.icon}"></i> {$larrSubCPoint.label} hinzufügen</a>
+                        <a href="{$larrSubCPoint.strRightAddLink}">
+                            <i class="icon-plus-sign"></i>
+                            {if $larrSubCPoint.icon === ''}
+                                <i class="icon-sign-blank icon-hidden"></i>
+                            {else}
+                                <i class="icon-1x {$larrSubCPoint.icon}"></i>
+                            {/if}
+                            {$larrSubCPoint.label} hinzufügen
+                        </a>
                     {/if}
-                    <a href="{$larrSubCPoint.link}"><i class="icon-1x"></i><i class="icon-1x {$larrSubCPoint.icon}"></i> {$larrSubCPoint.label}</a>
+                    <a href="{$larrSubCPoint.link}">
+                        <i class="icon-sign-blank icon-hidden"></i>
+                        {if $larrSubCPoint.icon === ''}
+                            <i class="icon-sign-blank icon-hidden"></i>
+                        {else}
+                            <i class="icon-1x {$larrSubCPoint.icon}"></i>
+                        {/if}
+                        {$larrSubCPoint.label}
+                    </a>
                 {else}
-                    <a href="{$larrSubCPoint.link}"><i class="icon-1x {$larrSubCPoint.icon}"></i> {$larrSubCPoint.label}</a>
+                    <a href="{$larrSubCPoint.link}">
+                        {if $larrSubCPoint.icon === ''}
+                            <i class="icon-sign-blank icon-hidden"></i>
+                        {else}
+                            <i class="icon-1x {$larrSubCPoint.icon}"></i>
+                        {/if}
+                        {$larrSubCPoint.label}
+                    </a>
                 {/if}
             </li>
         {/if}

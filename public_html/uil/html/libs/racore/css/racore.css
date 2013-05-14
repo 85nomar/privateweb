@@ -17,6 +17,10 @@ div .icons {
     font-size: 1em;
 }
 
+.icon-hidden {
+    visibility: hidden;
+}
+
 .sidebar-nav {
     padding: 9px 0;
 }
