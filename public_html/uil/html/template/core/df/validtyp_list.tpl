@@ -1,13 +1,13 @@
 <!-- core/validtyp_list.tpl -->
 <div class="span12" id="content">
 
-    {include 'uil/html/template/core/breadcrumb.tpl'}
+    {include "$strBreadcrumbTemplate"}
 
     <div class="row-fluid actionbar">
         <div class="span4 table-action"><br>
             {if $R_COREVALIDTYP_INSERT}
                 <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
-                {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREVALIDTYP_INSERT RIGHT='INSERT'}
+                {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREVALIDTYP_INSERT RIGHT='INSERT'}
             {/if}
         </div>
         <div class="span4 table-pagination">
@@ -63,14 +63,14 @@
                                     <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numValidTypID={$larrValue.numValidTypID}">
                                         <i class="icon-edit"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_CORECONFIG_UPDATE RIGHT='UPDATE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_CORECONFIG_UPDATE RIGHT='UPDATE'}
                                 {/if}
 
                                 {if $R_COREVALIDTYP_DELETE}
                                     <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numValidTypID={$larrValue.numValidTypID}">
                                         <i class="icon-trash"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_CORECONFIG_DELETE RIGHT='DELETE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_CORECONFIG_DELETE RIGHT='DELETE'}
                                 {/if}
 
                             </div>
@@ -79,7 +79,7 @@
                 {/foreach}
             {else}
                 <tr>
-                    <td colspan="3">{$L_KEINEDATEN}</td>
+                    <td colspan="5">{$L_KEINEDATEN}</td>
                 </tr>
             {/if}
         </tbody>

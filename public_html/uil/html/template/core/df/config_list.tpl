@@ -1,13 +1,13 @@
-<!-- core/user_list.tpl -->
+<!-- core/bul_list.tpl -->
 <div class="span12" id="content">
 
-    {include 'uil/html/template/core/breadcrumb.tpl'}
+    {include "$strBreadcrumbTemplate"}
 
     <div class="row-fluid actionbar">
         <div class="span4 table-action"><br>
-            {if $R_COREUSER_INSERT}
+            {if $R_CORECONFIG_INSERT}
                 <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
-                {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREUSER_INSERT RIGHT='INSERT'}
+                {include "$strRightButtonTemplate" HASRIGHT=$RROLL_CORECONFIG_INSERT RIGHT='INSERT'}
             {/if}
         </div>
         <div class="span4 table-pagination">
@@ -33,14 +33,16 @@
 
         <colgroup>
             <col width="10%">
-            <col width="70%">
+            <col width="35%">
+            <col width="35%">
             <col width="20%">
         </colgroup>
 
         <thead>
             <tr>
                 <th>{$L_ID}</th>
-                <th colspan="2">{$L_NAME}</th>
+                <th>{$L_NAME}</th>
+                <th colspan="2">{$L_VALUE}</th>
             </tr>
         </thead>
 
@@ -48,30 +50,24 @@
             {if $larrDaten|@count > 0}
                 {foreach $larrDaten AS $larrValue}
                     <tr>
-                        <td>{$larrValue.numUserID}</td>
+                        <td>{$larrValue.numConfigID}</td>
                         <td>{$larrValue.strName}</td>
+                        <td>{$larrValue.strValue}</td>
                         <td>
                             <div class="icons">
 
-                                {if $R_COREUSER_UPDATE}
-                                    <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numUserID={$larrValue.numUserID}">
+                                {if $R_CORECONFIG_UPDATE}
+                                    <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numConfigID={$larrValue.numConfigID}">
                                         <i class="icon-edit"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREUSER_UPDATE RIGHT='UPDATE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_CORECONFIG_UPDATE RIGHT='UPDATE'}
                                 {/if}
 
-                                {if $R_COREUSER_DELETE}
-                                    <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numUserID={$larrValue.numUserID}">
+                                {if $R_CORECONFIG_DELETE}
+                                    <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numConfigID={$larrValue.numConfigID}">
                                         <i class="icon-trash"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREUSER_DELETE RIGHT='DELETE'}
-                                {/if}
-
-                                {if $R_COREUSER_SIMULIEREN}
-                                    <a class="racoretooltip" title="{$L_SIMULIEREN}" href="{$G_BASELINK}&strAction=simulate&numUserID={$larrValue.numUserID}">
-                                        <i class="icon-desktop"></i>
-                                    </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREUSER_SIMULIEREN RIGHT='DELETE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_CORECONFIG_DELETE RIGHT='DELETE'}
                                 {/if}
 
                             </div>
@@ -80,7 +76,7 @@
                 {/foreach}
             {else}
                 <tr>
-                    <td colspan="3">{$L_KEINEDATEN}</td>
+                    <td colspan="4">{$L_KEINEDATEN}</td>
                 </tr>
             {/if}
         </tbody>

@@ -1,13 +1,13 @@
-<!-- core/bul_list.tpl -->
+<!-- core/user_list.tpl -->
 <div class="span12" id="content">
 
-    {include 'uil/html/template/core/breadcrumb.tpl'}
+    {include "$strBreadcrumbTemplate"}
 
     <div class="row-fluid actionbar">
         <div class="span4 table-action"><br>
-            {if $R_COREMENU_INSERT}
+            {if $R_COREUSER_INSERT}
                 <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
-                {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREMENU_INSERT RIGHT='INSERT'}
+                {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREUSER_INSERT RIGHT='INSERT'}
             {/if}
         </div>
         <div class="span4 table-pagination">
@@ -33,20 +33,14 @@
 
         <colgroup>
             <col width="10%">
+            <col width="70%">
             <col width="20%">
-            <col width="20%">
-            <col width="20%">
-            <col width="15%">
-            <col width="15%">
         </colgroup>
 
         <thead>
             <tr>
                 <th>{$L_ID}</th>
-                <th>{$L_PARENT}</th>
-                <th>{$L_BUSINESSLAYER}</th>
-                <th>{$L_NAME}</th>
-                <th colspan="2">{$L_RECHT}</th>
+                <th colspan="2">{$L_NAME}</th>
             </tr>
         </thead>
 
@@ -54,26 +48,30 @@
             {if $larrDaten|@count > 0}
                 {foreach $larrDaten AS $larrValue}
                     <tr>
-                        <td>{$larrValue.numMenuID}</td>
-                        <td>{$larrValue.strParentMenuName}</td>
-                        <td>{$larrValue.strBulName}</td>
+                        <td>{$larrValue.numUserID}</td>
                         <td>{$larrValue.strName}</td>
-                        <td>{$larrValue.strRight}</td>
                         <td>
                             <div class="icons">
 
-                                {if $R_COREMENU_UPDATE}
-                                    <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numMenuID={$larrValue.numMenuID}">
+                                {if $R_COREUSER_UPDATE}
+                                    <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numUserID={$larrValue.numUserID}">
                                         <i class="icon-edit"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREMENU_UPDATE RIGHT='UPDATE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREUSER_UPDATE RIGHT='UPDATE'}
                                 {/if}
 
-                                {if $R_COREMENU_DELETE}
-                                    <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numMenuID={$larrValue.numMenuID}">
+                                {if $R_COREUSER_DELETE}
+                                    <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numUserID={$larrValue.numUserID}">
                                         <i class="icon-trash"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_COREMENU_DELETE RIGHT='DELETE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREUSER_DELETE RIGHT='DELETE'}
+                                {/if}
+
+                                {if $R_COREUSER_SIMULIEREN}
+                                    <a class="racoretooltip" title="{$L_SIMULIEREN}" href="{$G_BASELINK}&strAction=simulate&numUserID={$larrValue.numUserID}">
+                                        <i class="icon-desktop"></i>
+                                    </a>
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREUSER_SIMULIEREN RIGHT='DELETE'}
                                 {/if}
 
                             </div>

@@ -1,7 +1,7 @@
 <!-- core/df/user_form.tpl -->
 <div class="span12" id="content">
 
-    {include 'uil/html/template/core/breadcrumb.tpl'}
+    {include "$strBreadcrumbTemplate"}
 
     <form class="form-horizontal" action="{$strFormAction}" method="POST">
         <input type="hidden" name="numUserID" value="{$larrDaten.numUserID}">

@@ -1,13 +1,13 @@
 <!-- core/bul_list.tpl -->
 <div class="span12" id="content">
 
-    {include 'uil/html/template/core/breadcrumb.tpl'}
+    {include "$strBreadcrumbTemplate"}
 
     <div class="row-fluid actionbar">
         <div class="span4 table-action"><br>
-            {if $R_CORECONFIG_INSERT}
+            {if $R_COREMENU_INSERT}
                 <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
-                {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_CORECONFIG_INSERT RIGHT='INSERT'}
+                {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREMENU_INSERT RIGHT='INSERT'}
             {/if}
         </div>
         <div class="span4 table-pagination">
@@ -33,16 +33,20 @@
 
         <colgroup>
             <col width="10%">
-            <col width="35%">
-            <col width="35%">
             <col width="20%">
+            <col width="20%">
+            <col width="20%">
+            <col width="15%">
+            <col width="15%">
         </colgroup>
 
         <thead>
             <tr>
                 <th>{$L_ID}</th>
+                <th>{$L_PARENT}</th>
+                <th>{$L_BUSINESSLAYER}</th>
                 <th>{$L_NAME}</th>
-                <th colspan="2">{$L_VALUE}</th>
+                <th colspan="2">{$L_RECHT}</th>
             </tr>
         </thead>
 
@@ -50,24 +54,26 @@
             {if $larrDaten|@count > 0}
                 {foreach $larrDaten AS $larrValue}
                     <tr>
-                        <td>{$larrValue.numConfigID}</td>
+                        <td>{$larrValue.numMenuID}</td>
+                        <td>{$larrValue.strParentMenuName}</td>
+                        <td>{$larrValue.strBulName}</td>
                         <td>{$larrValue.strName}</td>
-                        <td>{$larrValue.strValue}</td>
+                        <td>{$larrValue.strRight}</td>
                         <td>
                             <div class="icons">
 
-                                {if $R_CORECONFIG_UPDATE}
-                                    <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numConfigID={$larrValue.numConfigID}">
+                                {if $R_COREMENU_UPDATE}
+                                    <a class="racoretooltip" title="{$L_BEARBEITEN}" href="{$G_BASELINK}&strAction=updateMask&numMenuID={$larrValue.numMenuID}">
                                         <i class="icon-edit"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_CORECONFIG_UPDATE RIGHT='UPDATE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREMENU_UPDATE RIGHT='UPDATE'}
                                 {/if}
 
-                                {if $R_CORECONFIG_DELETE}
-                                    <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numConfigID={$larrValue.numConfigID}">
+                                {if $R_COREMENU_DELETE}
+                                    <a class="racoretooltip" title="{$L_LOESCHEN}" href="{$G_BASELINK}&strAction=delete&numMenuID={$larrValue.numMenuID}">
                                         <i class="icon-trash"></i>
                                     </a>
-                                    {include 'uil/html/template/core/rightaddremovebutton.tpl' HASRIGHT=$RROLL_CORECONFIG_DELETE RIGHT='DELETE'}
+                                    {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREMENU_DELETE RIGHT='DELETE'}
                                 {/if}
 
                             </div>
@@ -76,7 +82,7 @@
                 {/foreach}
             {else}
                 <tr>
-                    <td colspan="3">{$L_KEINEDATEN}</td>
+                    <td colspan="6">{$L_KEINEDATEN}</td>
                 </tr>
             {/if}
         </tbody>
