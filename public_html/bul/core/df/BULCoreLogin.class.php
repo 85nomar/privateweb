@@ -116,16 +116,22 @@ class BULCoreLogin extends LIBBul
     {
         $luilRouter = new UIL_router();
         $luilRouter->setDbl($this->getDbl());
-        $larrData = array();
-        $larrData['arrContent'] = array(
+        $larrData = array(
             'strTyp' => 'form',
             'strAction' => '?strBul=CoreLogin&strView=html&strAction=login',
-            'arrData' => $parrData,
+            'arrData' => array($parrData),
             'arrBreadcrumb' => array()
+
         );
-        $larrData['arrNavigation'] = $this->_getNavigation();
-        $luilRouter->setTemplate('core_login_form');
-        $luilRouter->route($larrData);
+        $larrDataTwo = array(
+            'strTemplate' => $this->getFormTemplate(),
+            'arrContent' => $larrData,
+            'arrNavigation' => $this->_getNavigation(),
+            'strAction' => LIBCore::getBaseLink(true).'&strAction=login',
+            'strTemplate' => 'login_form.tpl'
+        );
+        //$luilRouter->setTemplate('login_form.tpl');
+        $luilRouter->route($larrDataTwo);
         return true;
     }
 

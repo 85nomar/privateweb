@@ -30,7 +30,6 @@ class UIL_html_df extends LIBUil
         $larrData = $parrData;
         unset($parrData);
         if (LIBValid::isArray($larrData)) {
-
             $this->setSmarty(new \Smarty());
 
             /**
@@ -54,8 +53,6 @@ class UIL_html_df extends LIBUil
                 $lstrContent = $this->_getContent($larrData['arrContent']);
             }
             $larrData['strContent'] = $lstrContent;
-
-
 
 
             /**
