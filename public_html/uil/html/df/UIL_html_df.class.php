@@ -151,8 +151,17 @@ class UIL_html_df extends LIBUil
         $larrData['larrDaten'] = $parrData;
 
         $lsmarty->assign($larrData);
-        $lctemplate = 'uil/html/template/smarty/df/';
-        $lctemplate .= 'component_navigation_dropdown.tpl';
+        $lctemplate = 'uil/html/template/core/';
+        $lctemplate .= LIBCore::getGlobal('namensraum').'/';
+        $lctemplate .= 'navigation_dropdown.tpl';
+
+
+        $lctemplatemenu = 'uil/html/template/core/';
+        $lctemplatemenu .= LIBCore::getGlobal('namensraum').'/';
+        $lctemplatemenu .= 'navigation_menu.tpl';
+
+        $lsmarty->assign('navigationMenuTemplate', $lctemplatemenu);
+
         return $lsmarty->fetch($lctemplate);
     }
 

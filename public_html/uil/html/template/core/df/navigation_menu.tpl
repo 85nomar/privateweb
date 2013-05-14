@@ -8,7 +8,7 @@
             {$lnumIndex = $lnumIndex + 1}
             {$larrMenu[$lnumIndex] = $larrSubCPoint.child}
 
-            {include 'uil/html/template/smarty/df/component_navigation_menu.tpl'}
+            {include "$navigationMenuTemplate"}
             {$lnumIndex = $lnumIndex - 1}
             </li>
         {else}
