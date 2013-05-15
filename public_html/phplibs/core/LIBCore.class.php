@@ -343,8 +343,8 @@ class LIBCore
         $_SESSION['arrUser']['numUserID'] = $pnumUserID;
 
         $lstrQuery = 'SELECT cru.numUserID
-                      FROM       core_df_rolluser AS cru
-                      INNER JOIN core_df_roll AS cr
+                      FROM  '.LIBCore::getTableName('core_rolluser').' AS cru
+                      INNER JOIN '.LIBCore::getTableName('core_roll').'  AS cr
                         ON cru.numRollID = cr.numRollID
                       WHERE cru.numUserID = :numUserID
                         AND cr.strKuerzel = \'ADMIN\' ';
@@ -528,11 +528,13 @@ class LIBCore
             $lstrQuery = 'SELECT cr.strCode,
                              bul.strName AS BULName,
                              IF(!ISNULL(crr.numRollID), true, false) AS booRight
-                          FROM            core_df_right AS cr
-                          LEFT OUTER JOIN core_df_rollright AS crr
+                          FROM  '.LIBCore::getTableName('core_right').' AS cr
+                          LEFT OUTER JOIN
+                              '.LIBCore::getTableName('core_rollright').' AS crr
                             ON cr.numRightID = crr.numRightID
                             AND crr.numRollID = :numRollID
-                          LEFT OUTER JOIN core_df_bul AS bul
+                          LEFT OUTER JOIN
+                                  '.LIBCore::getTableName('core_bul').' AS bul
                             ON cr.numBulID = bul.numBulID
                           WHERE cr.numRightID > 0 ';
         } else {
@@ -543,12 +545,15 @@ class LIBCore
             $lstrQuery = 'SELECT cr.strCode,
                              bul.strName AS BULName,
                              IF(!ISNULL(cru.numUserID), true, false) AS booRight
-                      FROM            core_df_right AS cr
-                      LEFT OUTER JOIN core_df_rollright AS crr
+                      FROM  '.LIBCore::getTableName('core_right').' AS cr
+                      LEFT OUTER JOIN
+                            '.LIBCore::getTableName('core_rollright').' AS crr
                         ON cr.numRightID = crr.numRightID
-                      LEFT OUTER JOIN core_df_bul AS bul
+                      LEFT OUTER JOIN
+                                '.LIBCore::getTableName('core_bul').' AS bul
                         ON cr.numBulID = bul.numBulID
-                      LEFT OUTER JOIN core_df_rolluser AS cru
+                      LEFT OUTER JOIN
+                               '.LIBCore::getTableName('core_rolluser').' AS cru
                         ON  crr.numRollID = cru.numRollID
                         AND cru.numUserID = :numUserID
                       WHERE cr.numRightID > 0 ';
@@ -660,6 +665,25 @@ class LIBCore
 
         }
         return $larrReturn;
+    }
+
+
+    public static function getTableName($pstrTableName)
+    {
+        $lstrTableName = (string) $pstrTableName;
+        unset($pstrTableName);
+        $lstrNamensraum = LIBCore::getGlobal('namensraum');
+        $lstrReturn = $lstrNamensraum.'_'.$lstrTableName;
+        try {
+            if (!LIBDB::query('SELECT * FROM '.$lstrReturn.' LIMIT 1')) {
+                $lstrReturn = 'df_'.$lstrTableName;
+                LIBCore::cleanMessage(-1);
+            }
+        } catch (\Exception $e) {
+            $lstrReturn = 'df_'.$lstrTableName;
+            LIBCore::cleanMessage(-1);
+        }
+        return $lstrReturn;
     }
 
     /**

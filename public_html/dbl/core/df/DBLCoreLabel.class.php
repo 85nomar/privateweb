@@ -23,7 +23,7 @@ class DBLCoreLabel extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_label');
+        $this->setTablename('core_label');
         $this->setOrderBy('strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
@@ -45,7 +45,8 @@ class DBLCoreLabel extends LIBDbl
         $lstrQuery = 'SELECT cl.*,
                              cb.strName AS strBulName
                       FROM ' . $this->getTablename() .' AS cl
-                      INNER JOIN core_df_bul AS cb
+                      INNER JOIN
+                            '.LIBCore::getTableName('core_bul').' AS cb
                         ON cl.numBulID = cb.numBulID ';
         if ($this->getOrderBy() != '') {
             $lstrQuery .= ' ORDER BY strBulName, ' . $this->getOrderBy();

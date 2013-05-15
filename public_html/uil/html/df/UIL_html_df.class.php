@@ -151,11 +151,17 @@ class UIL_html_df extends LIBUil
         $lctemplate = 'uil/html/template/core/';
         $lctemplate .= LIBCore::getGlobal('namensraum').'/';
         $lctemplate .= 'navigation_dropdown.tpl';
+        if (!file_exists($lctemplate)) {
+            $lctemplate = 'uil/html/template/core/df/navigation_dropdown.tpl';
+        }
 
 
         $lctemplatemenu = 'uil/html/template/core/';
         $lctemplatemenu .= LIBCore::getGlobal('namensraum').'/';
         $lctemplatemenu .= 'navigation_menu.tpl';
+        if (!file_exists($lctemplatemenu)) {
+            $lctemplatemenu = 'uil/html/template/core/df/navigation_menu.tpl';
+        }
 
         $lsmarty->assign('navigationMenuTemplate', $lctemplatemenu);
 
@@ -197,14 +203,25 @@ class UIL_html_df extends LIBUil
     {
         $lstrTemplate = 'uil/html/template/core/';
         $lstrTemplate .= LIBCore::getGlobal('namensraum').'/'.$pstrTemplate;
+        if (!file_exists($lstrTemplate)) {
+            $lstrTemplate = 'uil/html/template/core/df/'.$pstrTemplate;
+        }
 
         $lstrBreadcrumbTemplate = 'uil/html/template/core/';
         $lstrBreadcrumbTemplate .= LIBCore::getGlobal('namensraum').'/';
         $lstrBreadcrumbTemplate .= 'breadcrumb.tpl';
+        if (!file_exists($lstrBreadcrumbTemplate)) {
+            $lstrBreadcrumbTemplate = 'uil/html/template/core/df/';
+            $lstrBreadcrumbTemplate .= 'breadcrumb.tpl';
+        }
 
         $lstrRightButtonTemplate = 'uil/html/template/core/';
         $lstrRightButtonTemplate .= LIBCore::getGlobal('namensraum').'/';
         $lstrRightButtonTemplate .= 'rightaddremovebutton.tpl';
+        if (!file_exists($lstrRightButtonTemplate)) {
+            $lstrRightButtonTemplate = 'uil/html/template/core/df/';
+            $lstrRightButtonTemplate .= 'rightaddremovebutton.tpl';
+        }
 
         $this->_loadMainAssign();
         $lsmarty = $this->getSmarty();

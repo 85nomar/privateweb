@@ -22,7 +22,7 @@ class QYCoreRight extends DBLCoreRight
     {
         $lstrQuery = 'SELECT cr.*, cb.strName AS strBul
                       FROM       '.$this->getTablename().' AS cr
-                      INNER JOIN core_df_bul AS cb
+                      INNER JOIN '.LIBCore::getTableName('core_bul').' AS cb
                         ON cr.numBulID = cb.numBulID';
         if (LIBDB::query($lstrQuery)) {
             $larrReturn = LIBDB::getData();
@@ -36,7 +36,7 @@ class QYCoreRight extends DBLCoreRight
     {
         $lstrQuery = 'SELECT cr.*, cb.strName AS strBul
                       FROM       '.$this->getTablename().' AS cr
-                      INNER JOIN core_df_bul AS cb
+                      INNER JOIN '.LIBCore::getTableName('core_bul').' AS cb
                         ON cr.numBulID = cb.numBulID';
         if (LIBDB::query($lstrQuery)) {
             $larrReturn = LIBDB::getData();
@@ -59,7 +59,7 @@ class QYCoreRight extends DBLCoreRight
     {
         $lstrQuery = 'SELECT cr.*, cb.strName AS strBul
                       FROM       '.$this->getTablename().' AS cr
-                      INNER JOIN core_df_bul AS cb
+                      INNER JOIN '.LIBCore::getTableName('core_bul').' AS cb
                         ON cr.numBulID = cb.numBulID';
         if (LIBDB::query($lstrQuery)) {
             $larrReturn = LIBDB::getData();

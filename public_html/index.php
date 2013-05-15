@@ -80,7 +80,7 @@ try {
     /**
      * Definition des zu Nutzenden Namensraum (Default = df = standard)
      */
-    LIBCore::setGlobal('namensraum', 'df');
+    LIBCore::setGlobal('namensraum', 'privateweb');
 
     /**
      * Grund- bzw. Hauptdaten laden

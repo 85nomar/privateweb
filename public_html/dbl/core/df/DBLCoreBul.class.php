@@ -23,7 +23,7 @@ class DBLCoreBul extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_bul');
+        $this->setTablename('core_bul');
         $this->setOrderBy('strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();

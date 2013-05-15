@@ -189,7 +189,7 @@ class LIBDbl
      */
     public function setTablename($pstrTablename)
     {
-        $this->_strTablename = $pstrTablename;
+        $this->_strTablename = LIBCore::getTableName($pstrTablename);
     }
 
     /**

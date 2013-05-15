@@ -23,7 +23,7 @@ class DBLCoreConfig extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_config');
+        $this->setTablename('core_config');
         $this->setOrderBy('strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();

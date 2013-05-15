@@ -30,7 +30,7 @@ class BULCoreRollUser extends LIBBul
         // @TODO
         $lfab = new LIBFeldaufbau();
         $lfab->setFeldaufbauByName('BULCoreRollUser');
-        $ldbl->setTablename('core_df_rolluser');
+        $ldbl->setTablename('core_rolluser');
         $ldbl->setOrderBy('');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
@@ -47,9 +47,9 @@ class BULCoreRollUser extends LIBBul
     {
         $larrData = $parrData;
         $ldblroll = new LIBDbl();
-        $ldblroll->setTablename('core_df_roll');
+        $ldblroll->setTablename('core_roll');
         $ldbluser = new LIBDbl();
-        $ldbluser->setTablename('core_df_user');
+        $ldbluser->setTablename('core_user');
 
         // Rolle
         $lstrSelected = 0;
@@ -82,14 +82,14 @@ class BULCoreRollUser extends LIBBul
     protected function _loadArrayDataForList($parrData)
     {
         $ldbl = new LIBDbl();
-        $ldbl->setTablename('core_df_bul');
+        $ldbl->setTablename('df_core_bul');
         foreach ($parrData AS $lstrKey => $larrData) {
             if (isset($larrData['numBulID'])) {
                 $larr = $ldbl->getWhere('numBulID = '.$larrData['numBulID']);
                 $parrData[$lstrKey]['numBulID'] = $larr[0]['strName'];
             }
         }
-        $ldbl->setTablename('core_df_right');
+        $ldbl->setTablename('core_right');
         foreach ($parrData AS $lstrKey => $larrData) {
             if (isset($larrData['numRightID'])) {
                 $larr = $ldbl->getWhere(

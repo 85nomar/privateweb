@@ -24,7 +24,7 @@ class DBLCoreRollRight extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_rollright');
+        $this->setTablename('core_rollright');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
         $lfab->getField('numRollRightID')->strValid = 'INTEGER';

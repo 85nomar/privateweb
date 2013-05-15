@@ -29,20 +29,6 @@ class BULCoreRight extends LIBBul
         $this->setDbl($ldbl);
         $this->setListTemplate('right_list.tpl');
         $this->setFormTemplate('right_form.tpl');
-
-
-        //$ldbl = new LIBDbl();
-
-        /*
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreRight');
-        $ldbl->setTablename('core_df_right');
-        $ldbl->setOrderBy('strName');
-        $ldbl->setFeldaufbau($lfab);
-        $this->setDbl($ldbl);
-        */
     }
 
     /**
@@ -56,7 +42,7 @@ class BULCoreRight extends LIBBul
     {
         $larrData = $parrData;
         $ldblValid = new LIBDbl();
-        $ldblValid->setTablename('core_df_bul');
+        $ldblValid->setTablename('core_bul');
         $lstrSelected = 0;
         if (isset($parrData['numBulID'])) {
             $lstrSelected = $parrData['numBulID'];
@@ -77,7 +63,7 @@ class BULCoreRight extends LIBBul
     protected function _loadArrayDataForList($parrData)
     {
         $ldbl = new LIBDbl();
-        $ldbl->setTablename('core_df_bul');
+        $ldbl->setTablename('core_bul');
         foreach ($parrData AS $lstrKey => $larrData) {
             if (isset($larrData['numBulID'])) {
                 $larr = $ldbl->getWhere('numBulID = '.$larrData['numBulID']);

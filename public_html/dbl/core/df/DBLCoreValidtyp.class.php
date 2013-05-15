@@ -23,7 +23,7 @@ class DBLCoreValidtyp extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_validtyp');
+        $this->setTablename('core_validtyp');
         $this->setOrderBy('strCode');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();

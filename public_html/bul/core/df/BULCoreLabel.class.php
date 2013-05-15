@@ -28,17 +28,6 @@ class BULCoreLabel extends LIBBul
         $this->setDbl($ldbl);
         $this->setListTemplate('label_list.tpl');
         $this->setFormTemplate('label_form.tpl');
-
-        /*
-        $ldbl = new LIBDbl();
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreLabel');
-        $ldbl->setTablename('core_df_label');
-        $ldbl->setFeldaufbau($lfab);
-        $this->setDbl($ldbl);
-        */
     }
 
     /**
@@ -52,7 +41,7 @@ class BULCoreLabel extends LIBBul
     {
         $larrData = $parrData;
         $ldblValid = new LIBDbl();
-        $ldblValid->setTablename('core_df_bul');
+        $ldblValid->setTablename('core_bul');
         $lstrSelected = 0;
         if (isset($parrData['numBulID'])) {
             $lstrSelected = $parrData['numBulID'];
@@ -73,7 +62,7 @@ class BULCoreLabel extends LIBBul
     protected function _loadArrayDataForList($parrData)
     {
         $ldbl = new LIBDbl();
-        $ldbl->setTablename('core_df_bul');
+        $ldbl->setTablename('core_bul');
         foreach ($parrData AS $lstrKey => $larrData) {
             if (isset($larrData['numBulID'])) {
                 $larr = $ldbl->getWhere('numBulID = '.$larrData['numBulID']);

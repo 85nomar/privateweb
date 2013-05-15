@@ -51,9 +51,9 @@ class BULCoreRollRight extends LIBBul
     {
         $larrData = $parrData;
         $ldblroll = new LIBDbl();
-        $ldblroll->setTablename('core_df_roll');
+        $ldblroll->setTablename('core_roll');
         $ldblright = new LIBDbl();
-        $ldblright->setTablename('core_df_right');
+        $ldblright->setTablename('core_right');
 
         // Rolle
         $lstrSelected = 0;
@@ -86,14 +86,14 @@ class BULCoreRollRight extends LIBBul
     protected function _loadArrayDataForList($parrData)
     {
         $ldbl = new LIBDbl();
-        $ldbl->setTablename('core_df_bul');
+        $ldbl->setTablename('core_bul');
         foreach ($parrData AS $lstrKey => $larrData) {
             if (isset($larrData['numBulID'])) {
                 $larr = $ldbl->getWhere('numBulID = '.$larrData['numBulID']);
                 $parrData[$lstrKey]['numBulID'] = $larr[0]['strName'];
             }
         }
-        $ldbl->setTablename('core_df_right');
+        $ldbl->setTablename('core_right');
         foreach ($parrData AS $lstrKey => $larrData) {
             if (isset($larrData['numRightID'])) {
                 $larr = $ldbl->getWhere(

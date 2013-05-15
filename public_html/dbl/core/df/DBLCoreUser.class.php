@@ -23,7 +23,7 @@ class DBLCoreUser extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_user');
+        $this->setTablename('core_user');
         $this->setOrderBy('strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();

@@ -100,7 +100,7 @@ class BULCoreLogin extends LIBBul
         $ldbl = new DBLCoreUser();
         $lfab = new LIBFeldaufbau();
         $lfab->setFeldaufbauByName('BULCoreLogin');
-        $ldbl->setTablename('core_df_user');
+        $ldbl->setTablename('core_user');
         $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
     }

@@ -29,18 +29,6 @@ class BULCoreMenu extends LIBBul
         $this->setDbl($ldbl);
         $this->setListTemplate('menu_list.tpl');
         $this->setFormTemplate('menu_form.tpl');
-
-        /*
-        $ldbl = new LIBDbl();
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreMenu');
-        $ldbl->setTablename('core_df_menu');
-        $ldbl->setOrderBy('numOrder');
-        $ldbl->setFeldaufbau($lfab);
-        $this->setDbl($ldbl);
-        */
     }
 
     /**
@@ -54,9 +42,9 @@ class BULCoreMenu extends LIBBul
     {
         $larrData = $parrData;
         $ldblValid = new LIBDbl();
-        $ldblValid->setTablename('core_df_menu');
+        $ldblValid->setTablename('core_menu');
         $ldblBul = new LIBDbl();
-        $ldblBul->setTablename('core_df_bul');
+        $ldblBul->setTablename('core_bul');
         $lstrSelected = 0;
         if (isset($parrData['numParentMenuID'])) {
             $lstrSelected = $parrData['numParentMenuID'];

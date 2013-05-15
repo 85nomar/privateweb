@@ -178,7 +178,7 @@ final class LIBDB
             $larrError['strLabel'] .= '<hr>'.$lstrQuery.'<hr>';
             $larrError['strLabel'] .= print_r($larrData, true);
             $larrError['strLabel'] .= '</pre><br>';
-            print_r($larrError);
+            //print_r($larrError);
             LIBCore::setMessage($larrError);
         }
         return $lbooReturn;

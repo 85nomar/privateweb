@@ -22,7 +22,7 @@ class QYCoreLabel extends DBLCoreLabel
     {
         $lstrQuery = 'SELECT cl.*, cb.strName AS strBul
                       FROM       '.$this->getTablename().' AS cl
-                      INNER JOIN core_df_bul AS cb
+                      INNER JOIN '.LIBCore::getTableName('core_bul').' AS cb
                         ON cl.numBulID = cb.numBulID';
         if (LIBDB::query($lstrQuery)) {
             $larrReturn = LIBDB::getData();

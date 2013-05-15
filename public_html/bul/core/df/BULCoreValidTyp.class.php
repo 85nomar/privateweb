@@ -26,17 +26,6 @@ class BULCoreValidTyp extends LIBBul
         $this->setDbl($ldbl);
         $this->setListTemplate('validtyp_list.tpl');
         $this->setFormTemplate('validtyp_form.tpl');
-
-        /*
-        $ldbl = new LIBDbl();
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreValidTyp');
-        $ldbl->setTablename('core_df_validtyp');
-        $ldbl->setFeldaufbau($lfab);
-        $this->setDbl($ldbl);
-        */
     }
 
 

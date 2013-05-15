@@ -23,7 +23,7 @@ class DBLCoreMenu extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_menu');
+        $this->setTablename('core_menu');
         $this->setOrderBy('strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
@@ -54,9 +54,11 @@ class DBLCoreMenu extends LIBDbl
                                 cmp.strName,
                                 \'\') AS strParentMenuName
                       FROM ' . $this->getTablename() .' AS cm
-                      LEFT OUTER JOIN core_df_bul AS cb
+                      LEFT OUTER JOIN
+                            '.LIBCore::getTableName('core_bul').' AS cb
                         ON cm.numBulID = cb.numBulID
-                      LEFT OUTER JOIN core_df_menu AS cmp
+                      LEFT OUTER JOIN
+                                '.LIBCore::getTableName('core_menu').' AS cmp
                         ON  cm.numParentMenuID = cmp.numMenuID';
         if ($this->getOrderBy() != '') {
             $lstrQuery .= ' ORDER BY strParentMenuName,

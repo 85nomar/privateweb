@@ -23,7 +23,7 @@ class DBLCoreRoll extends LIBDbl
      */
     public function __construct()
     {
-        $this->setTablename('core_df_roll');
+        $this->setTablename('core_roll');
         $this->setOrderBy('strKuerzel, strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
