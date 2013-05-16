@@ -27,17 +27,6 @@ class BULCoreRollRight extends LIBBul
     {
         $ldbl = new DBLCoreRollRight();
         $this->setDbl($ldbl);
-
-
-/*
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreRollRight');
-        $ldbl->setTablename('core_df_rollright');
-        $ldbl->setOrderBy('');
-        $ldbl->setFeldaufbau($lfab);
-        $this->setDbl($ldbl);
-*/
     }
 
     /**

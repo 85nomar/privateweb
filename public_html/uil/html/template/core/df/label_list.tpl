@@ -1,4 +1,4 @@
-<!-- core/right_list.tpl -->
+<!-- core/df/label_list.tpl -->
 <div class="span12" id="content">
 
     {include "$strBreadcrumbTemplate"}

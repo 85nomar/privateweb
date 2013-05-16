@@ -1,4 +1,4 @@
-<!-- core/df/right_form.tpl -->
+<!-- core/df/roll_form.tpl -->
 <div class="span12" id="content">
 
     {include "$strBreadcrumbTemplate"}
@@ -10,7 +10,7 @@
             <label class="control-label" for="strKuerzel">{$L_KUERZEL}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strKuerzel" maxlength="{$larrDaten.strKuerzelMaxLength}" value="{$larrDaten.strKuerzel}">
+                    <input type="text" id="strKuerzel" name="strKuerzel" maxlength="{$larrDaten.strKuerzelMaxLength}" value="{$larrDaten.strKuerzel}">
                     <span title="{$larrDaten.strKuerzelHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <label class="control-label" for="strName">{$L_NAME}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
+                    <input type="text" id="strName" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
                     <span title="{$larrDaten.strNameHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
@@ -29,7 +29,6 @@
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
         </div>
-
 
     </form>
 

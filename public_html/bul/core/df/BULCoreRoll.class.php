@@ -28,18 +28,6 @@ class BULCoreRoll extends LIBBul
         $this->setDbl($ldbl);
         $this->setListTemplate('roll_list.tpl');
         $this->setFormTemplate('roll_form.tpl');
-
-        /*
-        $ldbl = new LIBDbl();
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreRoll');
-        $ldbl->setTablename('core_df_roll');
-        $ldbl->setOrderBy('strName');
-        $ldbl->setFeldaufbau($lfab);
-        $this->setDbl($ldbl);
-        */
     }
 
 

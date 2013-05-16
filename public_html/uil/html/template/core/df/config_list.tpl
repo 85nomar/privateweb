@@ -1,4 +1,4 @@
-<!-- core/bul_list.tpl -->
+<!-- core/df/config_list.tpl -->
 <div class="span12" id="content">
 
     {include "$strBreadcrumbTemplate"}

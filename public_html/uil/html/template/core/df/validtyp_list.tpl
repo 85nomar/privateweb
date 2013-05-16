@@ -1,4 +1,4 @@
-<!-- core/validtyp_list.tpl -->
+<!-- core/df/validtyp_list.tpl -->
 <div class="span12" id="content">
 
     {include "$strBreadcrumbTemplate"}

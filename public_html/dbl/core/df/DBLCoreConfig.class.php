@@ -29,7 +29,9 @@ class DBLCoreConfig extends LIBDbl
         $lfab = $this->getFeldaufbau();
         $lfab->getField('numConfigID')->strValid = 'INTEGER';
         $lfab->getField('strName')->strValid = 'STRING';
+        $lfab->getField('strName')->strLabel = LIBCore::getLabel('NAME');
         $lfab->getField('strValue')->strValid = 'STRING';
+        $lfab->getField('strValue')->strLabel = LIBCore::getLabel('VALUE');
     }
 
 }

@@ -102,7 +102,8 @@ class LIBFeldaufbau
      *
      * @return bool|LIBFeldaufbauFeld
      */
-    public function getField($pstrName) {
+    public function getField($pstrName)
+    {
         $lfld = false;
         if (isset($this->_arrFields[$pstrName])) {
             $lfld = $this->_arrFields[$pstrName];
@@ -140,52 +141,6 @@ class LIBFeldaufbau
         return $lbreturn;
     }
 
-
-    /**
-     * Baut den Feldaufbau gemäss Namen, aus der Datenbank zusammen
-     *
-     * @param $pstrName
-     * @return bool
-     * @access public
-     */
-    public function setFeldaufbauByName($pstrName)
-    {
-        // @TODO
-        $lclistqy = 'SELECT cdf.strTableName, cdff.*
-                     FROM       core_df_feldaufbau AS cdf
-                     INNER JOIN core_df_feldaufbau_feld AS cdff
-                        ON cdf.numFeldaufbauID = cdff.numFeldaufbauID
-                     WHERE cdf.strFeldaufbauName = :strName
-                     ORDER BY cdff.numOrder ASC';
-        $larrData = array();
-        $larrData['strName'] = $pstrName;
-        LIBDB::query($lclistqy, $larrData);
-        $larrFelder = LIBDB::getData();
-
-        foreach ($larrFelder AS $lstrKey => $larrValue) {
-            $lstrFieldname = $larrValue['strDatabaseField'];
-            if ($lstrFieldname != '') {
-                $larrInfos =
-                    LIBDB::getFieldInformations($larrValue['strTableName']);
-                if ((integer) $larrValue['numLength'] == 0) {
-                    $larrValue['numLength'] =
-                        (integer) $larrInfos[$lstrFieldname]['Length'];
-                }
-                if ((string) $larrValue['strDataType'] == '') {
-                    $larrValue['strDataType'] =
-                        (string) $larrInfos[$lstrFieldname]['Type'];
-                }
-                if (LIBCore::hasRight($larrValue['strRight'])
-                    OR $larrValue['strRight'] === '') {
-                    $larrValue['booRight'] = true;
-                }
-            }
-            $larrFelder[$lstrKey] = $larrValue;
-        }
-        $this->setFelder($larrFelder);
-        return true;
-    }
-
     /**
      * Kontrolliert ob die Daten gemäss Feld Valide sind, gemäss
      * Validierungstyp
@@ -200,34 +155,41 @@ class LIBFeldaufbau
         $lbooReturn = true;
         $lstrWarning = '<ul>';
         $ldbl = new LIBDbl();
-        $ldbl->setTablename('core_df_validtyp');
-        foreach ($this->_arrFelder AS $lstrValue) {
+        $ldbl->setTablename('core_validtyp');
+        $larrFields = $this->getFields();
+        /** @var LIBFeldaufbauFeld $lfeld */
+        $lfeld = null;
+        foreach ($larrFields AS $lstrKey => $lfeld) {
             $lstrPostValue = '';
-            if (isset($parrData[$lstrValue['strDatabaseField']])) {
-                $lstrPostValue = $parrData[$lstrValue['strDatabaseField']];
+            if (isset($parrData[$lstrKey])) {
+                $lstrPostValue = $parrData[$lstrKey];
             }
 
             /**
              * Regex-Prüfung
              */
             $larrValid = $ldbl->getWhere(
-                'numValidTypID = '.$lstrValue['numValidTypID']
+                'strCode = \''.$lfeld->strValid.'\''
             );
-            $lstrRegex = $larrValid[0]['strRegex'];
-            if (!preg_match('/'.$lstrRegex.'/', $lstrPostValue)) {
-                $lbooReturn = false;
-                $lstrWarning .= '<li>'.$lstrValue['strLabel'].' ';
-                $lstrWarning .= '('.LIBCore::getLabel('UNGUELTIGEZEICHEN').')';
-                $lstrWarning .= '</li>';
+            if (count($larrValid) > 0) {
+                $lstrRegex = $larrValid[0]['strRegex'];
+                if (!preg_match('/'.$lstrRegex.'/', $lstrPostValue)) {
+                    $lbooReturn = false;
+                    $lstrWarning .= '<li>'.$lfeld->strLabel.' ';
+                    $lstrWarning .=
+                        '('.LIBCore::getLabel('UNGUELTIGEZEICHEN').')';
+                    $lstrWarning .= '</li>';
+                }
             }
+
 
             /**
              * Länge Prüfen
              */
-            if (strlen($lstrPostValue) > $lstrValue['numLength']
-                AND $lstrValue['numLength'] > 0) {
+            if (    strlen($lstrPostValue) > $lfeld->numLength
+                AND $lfeld->numLength > 0) {
                 $lbooReturn = false;
-                $lstrWarning .= '<li>'.$lstrValue['strLabel'].' ';
+                $lstrWarning .= '<li>'.$lfeld->strLabel.' ';
                 $lstrWarning .= '('.LIBCore::getLabel('ZULANG').')';
                 $lstrWarning .= '</li>';
             }
@@ -235,10 +197,10 @@ class LIBFeldaufbau
             /**
              * Required-Prüfen
              */
-            if ($lstrValue['numRequired'] == 1
+            if (    $lfeld->booRequired == 1
                 AND $lstrPostValue == '') {
                 $lbooReturn = false;
-                $lstrWarning .= '<li>'.$lstrValue['strLabel'].' ';
+                $lstrWarning .= '<li>'.$lfeld->strLabel.' ';
                 $lstrWarning .= '('.LIBCore::getLabel('MUSSANGEGEBENSEIN').')';
                 $lstrWarning .= '</li>';
             }

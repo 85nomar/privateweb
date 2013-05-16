@@ -98,10 +98,7 @@ class BULCoreLogin extends LIBBul
     public function __construct()
     {
         $ldbl = new DBLCoreUser();
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreLogin');
         $ldbl->setTablename('core_user');
-        $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
     }
 

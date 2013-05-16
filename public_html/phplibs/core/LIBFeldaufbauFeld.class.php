@@ -19,5 +19,7 @@ class LIBFeldaufbauFeld
     public $strType = '';
     public $strValid = '';
     public $strHelptext = '';
+    public $strLabel = '';
+    public $booRequired = false;
 
 }

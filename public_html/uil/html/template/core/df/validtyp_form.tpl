@@ -10,7 +10,7 @@
             <label class="control-label" for="strCode">{$L_CODE}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" maxlength="{$larrDaten.strCodeMaxLength}" name="strCode" value="{$larrDaten.strCode}">
+                    <input type="text" maxlength="{$larrDaten.strCodeMaxLength}" id="strCode" name="strCode" value="{$larrDaten.strCode}">
                     <span title="{$larrDaten.strCodeHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <label class="control-label" for="strName">{$L_NAME}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
+                    <input type="text" id="strName" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
                     <span title="{$larrDaten.strNameHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>

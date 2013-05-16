@@ -10,7 +10,7 @@
             <label class="control-label" for="strName">{$L_BUSINESSLAYER}</label>
             <div class="controls">
                 <div class="input-append">
-                    <select name="numBulID">
+                    <select id="numBulID" name="numBulID">
                         {foreach $larrDaten.numBulID AS $larrValue}
                             <option value="{$larrValue.code}" {if $larrValue.selected == 1}selected="selected"{/if}>
                                 {$larrValue.value}
@@ -26,7 +26,7 @@
             <label class="control-label" for="strName">{$L_NAME}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
+                    <input type="text" id="strName" name="strName" maxlength="{$larrDaten.strNameMaxLength}" value="{$larrDaten.strName}">
                     <span title="{$larrDaten.strNameHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
@@ -36,14 +36,14 @@
             <label class="control-label" for="strCode">{$L_CODE}</label>
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" name="strCode" maxlength="{$larrDaten.strCodeMaxLength}" value="{$larrDaten.strCode}">
+                    <input type="text" id="strCode" name="strCode" maxlength="{$larrDaten.strCodeMaxLength}" value="{$larrDaten.strCode}">
                     <span title="{$larrDaten.strCodeHelptext}" class="add-on racoretooltip"><i class="icon-question-sign"></i></span>
                 </div>
             </div>
         </div>
 
         <div class="form-actions">
-                    <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
+            <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
         </div>
 
 
