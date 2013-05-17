@@ -153,6 +153,7 @@ class LIBFeldaufbau
     public function isValidData($parrData)
     {
         $lbooReturn = true;
+        $larrWarning = array();
         $lstrWarning = '<ul>';
         $ldbl = new LIBDbl();
         $ldbl->setTablename('core_validtyp');
@@ -175,10 +176,20 @@ class LIBFeldaufbau
                 $lstrRegex = $larrValid[0]['strRegex'];
                 if (!preg_match('/'.$lstrRegex.'/', $lstrPostValue)) {
                     $lbooReturn = false;
+                    $lstrWarning = $lfeld->strLabel;
+                    if ($lfeld->strLabel == '') {
+                        $lstrWarning = $lstrKey;
+                    }
+                    $lstrWarning .=
+                        ' ('.LIBCore::getLabel('UNGUELTIGEZEICHEN').')';
+                    array_push($larrWarning, $lstrWarning);
+
+                    /*
                     $lstrWarning .= '<li>'.$lfeld->strLabel.' ';
                     $lstrWarning .=
                         '('.LIBCore::getLabel('UNGUELTIGEZEICHEN').')';
                     $lstrWarning .= '</li>';
+                    */
                 }
             }
 
@@ -189,9 +200,19 @@ class LIBFeldaufbau
             if (    strlen($lstrPostValue) > $lfeld->numLength
                 AND $lfeld->numLength > 0) {
                 $lbooReturn = false;
+                $lstrWarning = $lfeld->strLabel;
+                if ($lfeld->strLabel == '') {
+                    $lstrWarning = $lstrKey;
+                }
+                $lstrWarning .=
+                    ' ('.LIBCore::getLabel('ZULANG').')';
+                array_push($larrWarning, $lstrWarning);
+
+                /*
                 $lstrWarning .= '<li>'.$lfeld->strLabel.' ';
                 $lstrWarning .= '('.LIBCore::getLabel('ZULANG').')';
                 $lstrWarning .= '</li>';
+                */
             }
 
             /**
@@ -200,18 +221,31 @@ class LIBFeldaufbau
             if (    $lfeld->booRequired == 1
                 AND $lstrPostValue == '') {
                 $lbooReturn = false;
+                $lstrWarning = $lfeld->strLabel;
+                if ($lfeld->strLabel == '') {
+                    $lstrWarning = $lstrKey;
+                }
+                $lstrWarning .=
+                    ' ('.LIBCore::getLabel('MUSSANGEGEBENSEIN').')';
+                array_push($larrWarning, $lstrWarning);
+
+                /*
                 $lstrWarning .= '<li>'.$lfeld->strLabel.' ';
                 $lstrWarning .= '('.LIBCore::getLabel('MUSSANGEGEBENSEIN').')';
                 $lstrWarning .= '</li>';
+                */
             }
         }
 
         if (!$lbooReturn) {
-            $larrWarning = array();
-            $larrWarning['type'] = 'warning';
+            $larrWarningM = array();
+            $larrWarningM['type'] = 'warning';
+            $larrWarningM['arrWarning'] = $larrWarning;
+            /*
             $larrWarning['strLabel'] = LIBCore::getLabel('VALIDWARNING').
                 $lstrWarning;
-            LIBCore::setMessage($larrWarning);
+            */
+            LIBCore::setMessage($larrWarningM);
         }
 
         return $lbooReturn;

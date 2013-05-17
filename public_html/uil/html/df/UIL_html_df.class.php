@@ -67,7 +67,7 @@ class UIL_html_df extends LIBUil
              */
             $larrMessages = LIBCore::getMessage();
             $larrData['strErrorMessage'] = '';
-            $larrData['strWarningMessage'] = '';
+            $larrData['arrWarningMessage'] = array();
             $larrData['strSuccessMessage'] = '';
             $larrData['strSystemErrorMessage'] = '';
             foreach ($larrMessages as $larrMessage) {
@@ -76,8 +76,9 @@ class UIL_html_df extends LIBUil
                                             $larrMessage['strLabel'].'<br>';
                 }
                 if ($larrMessage['type'] == 'warning') {
-                    $larrData['strWarningMessage'] .=
-                                            $larrMessage['strLabel'].'<br>';
+
+                    $larrData['arrWarningMessage'] =
+                                            $larrMessage['arrWarning'];
                 }
                 if ($larrMessage['type'] == 'success') {
                     $larrData['strSuccessMessage'] .=
@@ -92,10 +93,10 @@ class UIL_html_df extends LIBUil
             /**
              * Abfüllen der Daten
              */
-            $lsmarty = new \Smarty();
+            $lsmarty = $this->getSmarty();
             $lsmarty->assign('PAGETITLE', LIBCore::getGlobal('strPageTitle'));
             $lsmarty->assign('ERRORMESSAGE', $larrData['strErrorMessage']);
-            $lsmarty->assign('WARNINGMESSAGE', $larrData['strWarningMessage']);
+            $lsmarty->assign('WARNINGMESSAGE', $larrData['arrWarningMessage']);
             $lsmarty->assign('SUCCESSMESSAGE', $larrData['strSuccessMessage']);
             $lsmarty->assign(
                 'SYSTEMERRORMESSAGE', $larrData['strSystemErrorMessage']

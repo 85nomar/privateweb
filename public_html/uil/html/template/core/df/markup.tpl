@@ -32,11 +32,17 @@
                 </div>
             </div>
         {/if}
-        {if $WARNINGMESSAGE != ''}
+        {if $WARNINGMESSAGE|@count > 0}
             <div class="row-fluid" id="errorMessage">
                 <div class="alert alert-block">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <i class="icon-info-sign"></i> {$WARNINGMESSAGE}
+                    <i class="icon-info-sign"></i> {$L_VALIDWARNING}
+                    <ul>
+                        {foreach $WARNINGMESSAGE AS $lstrWarning}
+                            <li>{$lstrWarning}</li>
+                        {/foreach}
+                    </ul>
+
                 </div>
             </div>
         {/if}
