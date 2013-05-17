@@ -4,7 +4,6 @@ namespace racore\bul\core\df;
 use racore\dbl\core\df\DBLCoreUser;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBCore;
-use racore\phplibs\core\LIBFeldaufbau;
 use racore\uil\router\UIL_router;
 
 /**
@@ -121,7 +120,6 @@ class BULCoreLogin extends LIBBul
 
         );
         $larrDataTwo = array(
-            'strTemplate' => $this->getFormTemplate(),
             'arrContent' => $larrData,
             'arrNavigation' => $this->_getNavigation(),
             'strAction' => LIBCore::getBaseLink(true).'&strAction=login',

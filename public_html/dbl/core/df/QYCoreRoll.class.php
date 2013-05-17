@@ -30,7 +30,6 @@ class QYCoreRoll extends DBLCoreRoll
     public function getRollenForUsers($pnumUserID = 0)
     {
         $lnumUserID = (integer) $pnumUserID;
-        $larrReturn = array();
         unset($pnumUserID);
         $ldblrr = new BULCoreRollUser();
         $lstrQuery = 'SELECT cr.numRollID,

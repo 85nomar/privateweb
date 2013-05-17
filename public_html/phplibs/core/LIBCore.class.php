@@ -216,7 +216,7 @@ class LIBCore
      * Setzt Nachricht in den Zwischenspeicher
      *
      * @param array $parrContent
-     * @param boolean pbooInit
+     * @param boolean $pbooInit
      *
      * @static
      */

@@ -20,7 +20,6 @@ use \racore\phplibs\core\LIBAutoload AS LIBAutoload;
 
 use racore\phplibs\core\LIBCore;
 use \racore\phplibs\core\LIBDB AS LIBDB;
-use racore\phplibs\core\LIBWord;
 
 /**
  * Define the Document-Root for the Test

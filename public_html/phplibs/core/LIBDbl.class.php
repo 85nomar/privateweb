@@ -78,9 +78,10 @@ class LIBDbl
         $larrReturn = array();
         $larrValueFields = explode(',', $pstrValueField);
         $lstrQuery = 'SELECT ' . $pstrCodeField . ' AS code,
-                             CONCAT(' . implode(", ' ', ", $larrValueFields) . ') AS value,
-                             IF(' . $pstrCodeField . ' =
-                                ' . (integer) $pstrSelectedCode . ', 1, 0) AS selected
+                        CONCAT(
+                         ' . implode(", ' ', ", $larrValueFields) . ') AS value,
+                        IF(' . $pstrCodeField . ' =
+                         ' . (integer) $pstrSelectedCode . ', 1, 0) AS selected
                       FROM ' . $this->getTablename() . '
                       ORDER BY value';
         if (LIBDB::query($lstrQuery)) {

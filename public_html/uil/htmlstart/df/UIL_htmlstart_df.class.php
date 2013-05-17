@@ -22,7 +22,7 @@ class UIL_htmlstart_df extends LIBUil
      *
      * @param array $parrData
      *
-     * @return string|bool
+     * @return null|bool
      * @access public
      */
     public function show($parrData)
@@ -30,9 +30,11 @@ class UIL_htmlstart_df extends LIBUil
         if (LIBValid::isArray($parrData)) {
             $lsmarty = new \Smarty();
             $lsmarty->display('uil/htmlstart/template/df/markup.tpl');
+            $lbooReturn = null;
         } else {
-            return false;
+            $lbooReturn = false;
         }
+        return $lbooReturn;
     }
 
 
@@ -152,7 +154,8 @@ class UIL_htmlstart_df extends LIBUil
                 $larrSpalte['booRollRight'] = $larrValue['booRollRight'];
                 $larrSpalte['strRight'] = $larrValue['strRight'];
                 $larrSpalte['strRightAddLink'] = $larrValue['strRightAddLink'];
-                $larrSpalte['strRightRemoveLink'] = $larrValue['strRightRemoveLink'];
+                $larrSpalte['strRightRemoveLink'] =
+                    $larrValue['strRightRemoveLink'];
                 if ($larrValue['strComponent'] === 'buttonFormPost') {
                     $larrSpalte['datapost'] = 'true';
                 }

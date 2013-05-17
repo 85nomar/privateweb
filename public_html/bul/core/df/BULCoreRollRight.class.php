@@ -5,7 +5,6 @@ use racore\dbl\core\df\DBLCoreRollRight;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBCore;
 use racore\phplibs\core\LIBDbl;
-use racore\phplibs\core\LIBFeldaufbau;
 
 /**
  * Das ist der Business-Layer von der Rollenrechte

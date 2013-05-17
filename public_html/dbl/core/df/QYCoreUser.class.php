@@ -3,7 +3,6 @@ namespace racore\dbl\core\df;
 
 use racore\phplibs\core\LIBCore;
 use racore\phplibs\core\LIBDB;
-use racore\phplibs\core\LIBDbl;
 use racore\phplibs\core\LIBValid;
 
 /**
@@ -42,7 +41,7 @@ class QYCoreUser extends DBLCoreUser
                 $larrUser = $larrUser[0];
                 $lnumUserID = $larrUser['numUserID'];
                 $ldblRollUser = new DBLCoreRollUser();
-                if (isset($larrData['arrRoll']))  {
+                if (isset($larrData['arrRoll'])) {
                     $larrRoll =  $larrData['arrRoll'];
                     foreach ($larrRoll AS $lnumRollID) {
                         $larrDataRoll = array();

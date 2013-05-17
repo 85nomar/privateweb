@@ -208,7 +208,8 @@ class UIL_htmlfd_df extends LIBUil
                 $larrSpalte['booRollRight'] = $larrValue['booRollRight'];
                 $larrSpalte['strRight'] = $larrValue['strRight'];
                 $larrSpalte['strRightAddLink'] = $larrValue['strRightAddLink'];
-                $larrSpalte['strRightRemoveLink'] = $larrValue['strRightRemoveLink'];
+                $larrSpalte['strRightRemoveLink'] =
+                    $larrValue['strRightRemoveLink'];
                 if ($larrValue['strComponent'] === 'buttonFormPost') {
                     $larrSpalte['datapost'] = 'true';
                 }

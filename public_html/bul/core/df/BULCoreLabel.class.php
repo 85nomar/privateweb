@@ -4,7 +4,6 @@ namespace racore\bul\core\df;
 use racore\dbl\core\df\DBLCoreLabel;
 use racore\phplibs\core\LIBBul;
 use racore\phplibs\core\LIBDbl;
-use racore\phplibs\core\LIBFeldaufbau;
 
 /**
  * Das ist der Business-Layer vom Label

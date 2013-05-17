@@ -71,16 +71,6 @@ class LIBWord extends \PHPWord
         $this->_prepareDocument();
         $this->_fillData();
 
-        //$this->_objDocument->replaceBookmarkValue('name', 'name', 'xyznamexyz');
-
-
-
-
-
-        //LIBCore::print_r(htmlentities($this->_objDocument->getDocumentXML()));
-        //echo htmlentities($this->_objDocument->getDocumentXML()).'<hr>';
-        //exit;
-
         $this->_objDocument->save($lcfilename);
 
 
@@ -112,7 +102,9 @@ class LIBWord extends \PHPWord
         if ($this->getTemplate() == '') {
             trigger_error('Es wurde kein Template angegeben');
         } else if (!file_exists($this->getTemplate())) {
-            trigger_error('Das Template \''.$this->getTemplate().'\' existiert nicht');
+            trigger_error(
+                'Das Template \''.$this->getTemplate().'\' existiert nicht'
+            );
         } else {
             $this->_objDocument = $this->loadTemplate($this->getTemplate());
         }

@@ -169,8 +169,9 @@ class LIBUil
         $larights = $ldblrights->getAllWithBulAndHaveRightForRoll();
         foreach ($larights AS $laValue) {
             $lsmarty->assign(
-                'RROLL_'.strtoupper($laValue['strBul']).
-                    '_'.$laValue['strCode'], $laValue['numRight']
+                'RROLL_'.
+                strtoupper($laValue['strBul']).
+                '_'.$laValue['strCode'], $laValue['numRight']
             );
         }
         $lnumRollID = 0;

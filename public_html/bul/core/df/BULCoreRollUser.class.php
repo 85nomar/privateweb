@@ -26,13 +26,6 @@ class BULCoreRollUser extends LIBBul
     public function __construct()
     {
         $ldbl = new DBLCoreRollUser();
-
-        // @TODO
-        $lfab = new LIBFeldaufbau();
-        $lfab->setFeldaufbauByName('BULCoreRollUser');
-        $ldbl->setTablename('core_rolluser');
-        $ldbl->setOrderBy('');
-        $ldbl->setFeldaufbau($lfab);
         $this->setDbl($ldbl);
     }
 
