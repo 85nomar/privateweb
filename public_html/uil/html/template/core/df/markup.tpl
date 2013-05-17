@@ -20,9 +20,12 @@
     <br>
     <div class="container-fluid">
 
-        <div class="container" style="width: auto;">
-            {$NAVIGATION}
-        </div>
+        {if $NAVIGATION}
+            <div class="container" style="width: auto;">
+                {$NAVIGATION}
+            </div>
+        {/if}
+
 
         {if $ERRORMESSAGE != ''}
             <div class="row-fluid" id="errorMessage">

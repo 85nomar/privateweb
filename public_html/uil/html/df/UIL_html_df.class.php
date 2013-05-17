@@ -56,11 +56,15 @@ class UIL_html_df extends LIBUil
 
 
             /**
-             * Grundaufbau
+             * Naviation
              */
-            $larrData['strNavigation'] = $this->_getNavigation(
-                $larrData['arrNavigation']
-            );
+            $larrData['strNavigation'] = '';
+            if (count($larrData['arrNavigation']) > 0) {
+                $larrData['strNavigation'] = $this->_getNavigation(
+                    $larrData['arrNavigation']
+                );
+            }
+
 
             /**
              * Messages
@@ -76,9 +80,10 @@ class UIL_html_df extends LIBUil
                                             $larrMessage['strLabel'].'<br>';
                 }
                 if ($larrMessage['type'] == 'warning') {
-
-                    $larrData['arrWarningMessage'] =
-                                            $larrMessage['arrWarning'];
+                    if (isset($larrMessage['arrWarning'])) {
+                        $larrData['arrWarningMessage'] =
+                            $larrMessage['arrWarning'];
+                    }
                 }
                 if ($larrMessage['type'] == 'success') {
                     $larrData['strSuccessMessage'] .=

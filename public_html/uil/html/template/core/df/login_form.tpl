@@ -22,8 +22,11 @@
             </div>
         </div>
 
-        <div class="form-actions">
-            <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="{$L_SPEICHERN}">
+            </div>
+
         </div>
 
     </form>
