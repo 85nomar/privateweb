@@ -17,16 +17,13 @@
      </head>
     <body {if $cssdebugger==1}class="holmes-debug"{/if}>
 
-    <br>
+    <div class="container" style="width: auto;">
+        {$NAVIGATION}
+    </div>
+
+
     <div class="container-fluid">
-
-        {if $NAVIGATION}
-            <div class="container" style="width: auto;">
-                {$NAVIGATION}
-            </div>
-        {/if}
-
-
+        <br>
         {if $ERRORMESSAGE != ''}
             <div class="row-fluid" id="errorMessage">
                 <div class="alert alert-error alert-block">
@@ -74,6 +71,7 @@
     <script type="text/javascript" src="uil/core/html/libs/jquery-1.9.1/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="uil/core/html/libs/jquery-1.9.1/js/jquery-ui-1.10.2.min.js"></script>
     <script type="text/javascript" src="uil/core/html/libs/bootstrap-2.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="uil/core/html/libs/bootstrap-2.3.1/js/twitter-bootstrap-hover-dropdown.min.js"></script>
     <script type="text/javascript" src="uil/html/libs/racore/js/racore.js"></script>
     <script type="text/javascript" src="uil/html/libs/racore/js/plugins/tablesort.plugins.js"></script>
     <script type="text/javascript" src="uil/html/libs/racore/js/plugins/pagination.plugins.js"></script>

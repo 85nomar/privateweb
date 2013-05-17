@@ -21,6 +21,7 @@ div .icons {
     visibility: hidden;
 }
 
+/*
 .sidebar-nav {
     padding: 9px 0;
 }
@@ -37,9 +38,11 @@ div .icons {
     visibility: visible;
 }
 
+
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
 
 .nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
     margin-top: 0;
@@ -61,5 +64,11 @@ div .icons {
     left: 10px;
     top: 11px;
     left: -6px;
+}
+*/
+
+
+.vertical-align-center {
+    vertical-align: center;
 }
 

@@ -121,7 +121,7 @@ class BULCoreLogin extends LIBBul
         );
         $larrDataTwo = array(
             'arrContent' => $larrData,
-            'arrNavigation' => array(),
+            'arrNavigation' => $this->_getNavigation(),
             'strAction' => LIBCore::getBaseLink(true).'&strAction=login',
             'strTemplate' => 'login_form.tpl'
         );

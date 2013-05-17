@@ -59,11 +59,9 @@ class UIL_html_df extends LIBUil
              * Naviation
              */
             $larrData['strNavigation'] = '';
-            if (count($larrData['arrNavigation']) > 0) {
-                $larrData['strNavigation'] = $this->_getNavigation(
-                    $larrData['arrNavigation']
-                );
-            }
+            $larrData['strNavigation'] = $this->_getNavigation(
+                $larrData['arrNavigation']
+            );
 
 
             /**
