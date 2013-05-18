@@ -49,6 +49,8 @@ class BULCoreLogin extends LIBBul
                     /*
                      * @TODO Muss noch eine Startseite erstellt werden
                      */
+                    $_GET['strBul'] = 'CoreUser';
+                    LIBCore::loadGet();
                     $lbulUser = new BULCoreUser();
                     $lbulUser->route('listMask');
                 } else {
