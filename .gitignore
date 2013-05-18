@@ -1,2 +1,2 @@
 ./idea/*
-./public_html/templates_c/*
+**/templates_c/*
