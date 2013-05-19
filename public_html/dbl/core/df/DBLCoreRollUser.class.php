@@ -24,7 +24,7 @@ class DBLCoreRollUser extends LIBDbl
     public function __construct()
     {
         $this->setTablename('core_rolluser');
-        $this->setOrderBy('strName');
+        $this->setOrderBy('numRollUserID');
         $this->_createFeldaufbau();
     }
 

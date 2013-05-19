@@ -581,7 +581,6 @@ class LIBBul
                             $lstrRemoveLink.$lstrBulRight;
                     }
                 }
-
                 if (LIBCore::hasRight(
                     $larrValue['strRight'], $larrDataBul[0]['strName']
                 )) {

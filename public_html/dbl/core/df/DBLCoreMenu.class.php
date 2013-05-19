@@ -31,9 +31,9 @@ class DBLCoreMenu extends LIBDbl
         $lfab->getField('numParentMenuID')->strValid = 'INTEGER';
         $lfab->getField('numBulID')->strValid = 'INTEGER';
         $lfab->getField('strName')->strValid = 'STRING';
-        $lfab->getField('strLink')->strValid = 'STRING';
-        $lfab->getField('strIcon')->strValid = 'STRING';
-        $lfab->getField('strRight')->strValid = 'STRING';
+        $lfab->getField('strLink')->strValid = 'ALLES';
+        $lfab->getField('strIcon')->strValid = 'STRINGOREMPTY';
+        $lfab->getField('strRight')->strValid = 'STRINGOREMPTY';
         $lfab->getField('numOrder')->strValid = 'INTEGER';
     }
 
