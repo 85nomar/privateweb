@@ -29,9 +29,7 @@ class BULCoreUpdate extends LIBBul
         $ldbl->setTablename('core_user');
         $this->setDbl($ldbl);
         $this->setListTemplate('update_list.tpl');
-        if (is_dir('_updaterescue')) {
-            mkdir('_updaterescue');
-        }
+        exec('git fetch --tags');
     }
 
     /**
@@ -51,9 +49,7 @@ class BULCoreUpdate extends LIBBul
                 $lstrNew = LIBCore::getGet('strTag');
                 $lstrOld = LIBCore::getGet('strTagOld');
                 $lstrBefehl = "cd .. && sh update.sh '".$lstrOld."' '".$lstrNew."'";
-
                 exec($lstrBefehl, $larrOutput);
-                LIBCore::print_r($larrOutput);
                 break;
             case 'updaterescue':
                 break;
@@ -72,6 +68,9 @@ class BULCoreUpdate extends LIBBul
         /**
          * Auslesen der Update-Rescue-Verzeichnisses
          */
+        if (is_dir('_updaterescue')) {
+            mkdir('_updaterescue');
+        }
         $larrUpdateRescue = scandir('_updaterescue');
 
         /**
