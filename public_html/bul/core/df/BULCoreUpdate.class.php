@@ -29,8 +29,7 @@ class BULCoreUpdate extends LIBBul
         $ldbl->setTablename('core_user');
         $this->setDbl($ldbl);
         $this->setListTemplate('update_list.tpl');
-        exec('git fetch --tags', $larrData);
-        LIBCore::print_r($larrData);
+        exec('git fetch --tags');
     }
 
     /**
