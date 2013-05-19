@@ -44,7 +44,13 @@ class BULCoreUpdate extends LIBBul
         $luilRouter = new UIL_router();
         $luilRouter->setDbl($this->getDbl());
         switch($pstrData) {
-            case 'login':
+            case 'updateaction':
+                $lstrNew = LIBCore::getGet('strTag');
+                $lstrOld = LIBCore::getGet('strTagOld');
+                $lstrBefehl = "sh update.sh '".$lstrOld."' '".$lstrNew."";
+                exec($lstrBefehl);
+                break;
+            case 'updaterescue':
                 break;
             default:
                 break;
@@ -57,14 +63,65 @@ class BULCoreUpdate extends LIBBul
     {
         $lbooReturn = false;
         $luilRouter = new UIL_router();
-        $larrTags = array();
-        //exec("git tag -l", $latags);
-        exec('git branch -r', $larrTags);
 
+        /**
+         * Auslesen der Update-Rescue-Verzeichnisses
+         */
+        $larrUpdateRescue = scandir('_updaterescue');
+
+        /**
+         * Versionen welche Ausgecheckt wurden
+         */
+        $larrVersion = array();
+        exec('git describe --always --tag', $larrVersion);
+
+        /**
+         * Tags welche es überhaupt gibt
+         */
+        $larrTags = array();
+        exec("git tag", $larrTags, $lnumReturn);
+
+        /**
+         * Tag-Temp-Array über Versions-Informationen
+         */
+        $larrTempTag = array(
+            'version' => null,
+            'old' => true,
+            'act' => false,
+            'updaterescue' => false
+        );
+
+        /**
+         * Versionen abfragen und alles abfüllen
+         */
+        $lstrVersion = null;
+        foreach ($larrTags AS $lstrKey => $lstrTag) {
+            if ($larrVersion[0] == $lstrTag) {
+                $larrTempTag['old'] = false;
+                $larrTempTag['act'] = true;
+                $lstrVersion = $lstrTag;
+            }
+
+            $larrTempTagEnd = $larrTempTag;
+            $larrTempTag['act'] = false;
+            $larrTempTagEnd['version'] = $lstrTag;
+            if (in_array($lstrTag, $larrUpdateRescue)) {
+                $larrTempTagEnd['updaterescue'] = true;
+            }
+
+            $larrTags[$lstrKey] = $larrTempTagEnd;
+
+        }
+        $larrTags = array_reverse($larrTags);
+
+        $larrDaten = array();
+        $larrDaten['arrTags'] = $larrTags;
+        $larrDaten['arrVersion'] = $larrVersion;
+        $larrDaten['strVersion'] = $lstrVersion;
 
         $larrData = array(
             'strTyp' => 'list',
-            'arrData' => $larrTags,
+            'arrData' => $larrDaten,
             'arrBreadcrumb' => $this->_getBreadCrumbListMask()
         );
         $larrDataTwo = array(
@@ -76,6 +133,8 @@ class BULCoreUpdate extends LIBBul
         $luilRouter->route($larrDataTwo);
         return $lbooReturn;
     }
+
+
 
 
 
