@@ -29,6 +29,9 @@ class BULCoreUpdate extends LIBBul
         $ldbl->setTablename('core_user');
         $this->setDbl($ldbl);
         $this->setListTemplate('update_list.tpl');
+        if (is_dir('_updaterescue')) {
+            mkdir('_updaterescue');
+        }
     }
 
     /**
