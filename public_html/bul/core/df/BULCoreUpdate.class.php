@@ -51,6 +51,7 @@ class BULCoreUpdate extends LIBBul
                 $lstrNew = LIBCore::getGet('strTag');
                 $lstrOld = LIBCore::getGet('strTagOld');
                 $lstrBefehl = "cd .. && sh update.sh '".$lstrOld."' '".$lstrNew."'";
+
                 exec($lstrBefehl, $larrOutput);
                 LIBCore::print_r($larrOutput);
                 break;
