@@ -47,7 +47,7 @@ class BULCoreUpdate extends LIBBul
             case 'updateaction':
                 $lstrNew = LIBCore::getGet('strTag');
                 $lstrOld = LIBCore::getGet('strTagOld');
-                $lstrBefehl = "sh update.sh '".$lstrOld."' '".$lstrNew."'";
+                $lstrBefehl = "cd .. && sh update.sh '".$lstrOld."' '".$lstrNew."'";
                 exec($lstrBefehl, $larrOutput);
                 LIBCore::print_r($larrOutput);
                 break;
