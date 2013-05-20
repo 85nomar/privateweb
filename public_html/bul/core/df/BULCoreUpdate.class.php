@@ -57,6 +57,10 @@ class BULCoreUpdate extends LIBBul
                 exec($lstrBefehl, $larrOutput);
                 break;
             case 'updaterescue':
+                $lstrOld = LIBCore::getGet('strTagOld');
+                $lstrBefehl = "cd .. && sh updaterescue.sh '".
+                    $lstrOld."' 'dbname'";
+                exec($lstrBefehl);
                 break;
             default:
                 break;
