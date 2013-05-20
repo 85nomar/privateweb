@@ -55,6 +55,10 @@ class BULCoreUpdate extends LIBBul
                 $lstrBefehl = "cd .. && sh update.sh '".
                     $lstrOld."' '".$lstrNew."'";
                 exec($lstrBefehl, $larrOutput);
+                $_GET = LIBCore::getGet();
+                LIBCore::loadGet();
+                unset($_GET['strTagOld']);
+                unset($_GET['strTag']);
                 $this->_listMask();
                 break;
             case 'updaterescue':
@@ -62,6 +66,10 @@ class BULCoreUpdate extends LIBBul
                 $lstrBefehl = "cd .. && sh updaterescue.sh '".
                     $lstrOld."' 'dbname'";
                 exec($lstrBefehl);
+                $_GET = LIBCore::getGet();
+                unset($_GET['strTagOld']);
+                unset($_GET['strTag']);
+                LIBCore::loadGet();
                 $this->_listMask();
                 break;
             default:
