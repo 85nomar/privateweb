@@ -155,7 +155,75 @@ class BULCoreUpdate extends LIBBul
         return $lbooReturn;
     }
 
+    public function dbImport($pstrTagOld)
+    {
 
+    }
+
+    public function dbDump($pstrTagOld)
+    {
+
+    }
+
+    public function dbTempCreate($pstrTagOld)
+    {
+
+    }
+
+    public function dbImportDump($pstrTagOld)
+    {
+
+    }
+
+    public function dbDumpStructureToXML($pstrTagOld)
+    {
+
+    }
+
+    public function getDBChanges()
+    {
+
+    }
+
+    public function dbWriteAndDoSQL()
+    {
+
+    }
+
+    public function getDBIndex()
+    {
+
+    }
+
+    public function getKeyChanges()
+    {
+
+    }
+
+    public function dbInsertNewRecords()
+    {
+
+    }
+
+    public function dbDeleteViews()
+    {
+
+    }
+
+    public function loadXMLIntoArray()
+    {
+
+    }
+
+    public function getKeyDrops()
+    {
+
+    }
+
+    public function dbDrop()
+    {
+
+    }
 
 
 
