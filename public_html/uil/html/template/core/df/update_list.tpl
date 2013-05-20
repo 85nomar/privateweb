@@ -55,7 +55,7 @@
                                     {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREUPDATE_ZUGANG RIGHT='ZUGANG'}
                                 {/if}
 
-                                {if $R_COREUPDATE_ZUGANG AND trim($arrTag.version) != $larrDaten.strVersion}
+                                {if $R_COREUPDATE_ZUGANG AND trim($arrTag.version) != $larrDaten.strVersion AND !$arrTag.updaterescue}
                                     <a class="racoretooltip" title="{$L_UPDATEACTION}" href="{$G_BASELINK}&strAction=updateaction&strTag={trim($arrTag.version)}&strTagOld={trim($larrDaten.strVersion)}">
                                         <i class="icon-plus-sign"></i>
                                     </a>
