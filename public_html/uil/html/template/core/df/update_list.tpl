@@ -3,6 +3,7 @@
 
     {include "$strBreadcrumbTemplate"}
 
+
     <div class="row-fluid actionbar">
         <div class="span4">
             &nbsp;
