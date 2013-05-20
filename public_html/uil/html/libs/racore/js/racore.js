@@ -21,6 +21,13 @@ $('.racoretooltip').tooltip({
     delay: { show: 200, hide: 500 }
 });
 
+$('.racoretooltiptop').tooltip({
+    trigger: 'hover',
+    html: true,
+    placement: "top",
+    delay: { show: 200, hide: 500 }
+});
+
 
 /**
  * Aufruf der Plugins

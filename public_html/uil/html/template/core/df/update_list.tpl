@@ -46,19 +46,19 @@
         <tbody>
             {if $larrDaten|@count > 0}
                 {foreach $larrDaten.arrTags AS $arrTag}
-                    <tr>
+                    <tr {if trim($arrTag.version) == $larrDaten.strVersion}class="racoretooltiptop success" title="{$L_AKTUELLEVERSION}"{/if}>
                         <td>{$arrTag.version}</td>
                         <td>
                             <div class="icons">
 
-                                {if $R_COREUPDATE_ZUGANG}
+                                {if $R_COREUPDATE_ZUGANG AND trim($arrTag.version) != $larrDaten.strVersion}
                                     <a class="racoretooltip" title="{$L_UPDATERESCUE}" href="{$G_BASELINK}&strAction=updaterescue&strTag={trim($arrTag.version)}">
                                         <i class="icon-ambulance"></i>
                                     </a>
                                     {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREUPDATE_ZUGANG RIGHT='ZUGANG'}
                                 {/if}
 
-                                {if $R_COREUPDATE_ZUGANG}
+                                {if $R_COREUPDATE_ZUGANG AND trim($arrTag.version) != $larrDaten.strVersion}
                                     <a class="racoretooltip" title="{$L_UPDATEACTION}" href="{$G_BASELINK}&strAction=updateaction&strTag={trim($arrTag.version)}&strTagOld={trim($larrDaten.strVersion)}">
                                         <i class="icon-plus-sign"></i>
                                     </a>
