@@ -15,6 +15,17 @@ self::$_strSourceUser="racore";
 self::$_strSourcePassword="racoretest";
 
 /**
+ * Full-Tables
+ */
+self::$_arrFullTables = array();
+array_push(self::$_arrFullTables, array('name' => 'df_core_label));
+
+/**
+ * Content-Tables
+ */
+self::$_arrContentTables = array();
+
+/**
  * Allgemeine Einstellungen
  */
 self::$_strMandant="df";

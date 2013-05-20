@@ -79,6 +79,23 @@ final class LIBConfig
     private static $_strSourceUser = '';
 
     /**
+     * Enthält alle Tabellen, welche Komplett übernommen werden
+     * @var array
+     * @access private
+     * @static
+     */
+    private static $_arrFullTables = array();
+
+    /**
+     * Enthält alle Tabellen, welche Teilweise übernommen werden
+     *
+     * @var array
+     * @access private
+     * @static
+     */
+    private static $_arrContentTables = array();
+
+    /**
      * Enthält den Source-Password
      *
      * @var string
