@@ -71,7 +71,7 @@ class BULCoreUpdate extends LIBBul
         if (!is_dir('../_updaterescue')) {
             mkdir('../_updaterescue');
         }
-        $larrUpdateRescue = scandir('_updaterescue');
+        $larrUpdateRescue = scandir('../_updaterescue');
 
         /**
          * Versionen welche Ausgecheckt wurden

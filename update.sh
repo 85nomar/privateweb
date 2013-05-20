@@ -4,4 +4,4 @@
 # $2 = Versionnummer Neu
 
 git checkout -f $2 > update.log
-mv update.log ../_updaterescue/$1/
+mv update.log _updaterescue/$1/
