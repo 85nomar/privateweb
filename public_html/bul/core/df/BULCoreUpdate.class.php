@@ -41,7 +41,6 @@ class BULCoreUpdate extends LIBBul
      */
     public function routeExtension($pstrData)
     {
-
         $lbooReturn = false;
         $luilRouter = new UIL_router();
         $luilRouter->setDbl($this->getDbl());
