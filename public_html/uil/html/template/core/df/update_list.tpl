@@ -48,7 +48,7 @@
                         <td>
                             <div class="icons">
 
-                                {if $R_COREUPDATE_ZUGANG AND trim($arrTag.version) != $larrDaten.strVersion}
+                                {if $R_COREUPDATE_ZUGANG AND trim($arrTag.version) != $larrDaten.strVersion AND $arrTag.updaterescue}
                                     <a class="racoretooltip" title="{$L_UPDATERESCUE}" href="{$G_BASELINK}&strAction=updaterescue&strTag={trim($arrTag.version)}">
                                         <i class="icon-ambulance"></i>
                                     </a>
