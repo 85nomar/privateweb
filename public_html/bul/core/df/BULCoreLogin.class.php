@@ -127,7 +127,6 @@ class BULCoreLogin extends LIBBul
             'strAction' => LIBCore::getBaseLink(true).'&strAction=login',
             'strTemplate' => 'login_form.tpl'
         );
-        //$luilRouter->setTemplate('login_form.tpl');
         $luilRouter->route($larrDataTwo);
         return true;
     }
