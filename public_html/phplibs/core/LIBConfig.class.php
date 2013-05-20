@@ -52,6 +52,42 @@ final class LIBConfig
     private static $_strPassword = "";
 
     /**
+     * Enhält den Source-Server
+     *
+     * @var string
+     * @access private
+     * @static
+     */
+    private static $_strSourceServer = '';
+
+    /**
+     * Enhält die Source-Datenbank
+     *
+     * @var string
+     * @access private
+     * @static
+     */
+    private static $_strSourceDatabase = '';
+
+    /**
+     * Enthält den Source-User
+     *
+     * @var string
+     * @access private
+     * @static
+     */
+    private static $_strSourceUser = '';
+
+    /**
+     * Enthält den Source-Password
+     *
+     * @var string
+     * @access private
+     * @static
+     */
+    private static $_strSourcePassword = '';
+
+    /**
      * Enhält die Instanz des Objektes DB
      *
      * @var null|LIBConfig
