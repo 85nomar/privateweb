@@ -155,12 +155,18 @@ final class LIBConfig
     public static function setConfigByConfigFile()
     {
         $lbooReturn = true;
-        $lstrFilePath = "config/" . self::_getServerName();
+        $lstrFilePath = "config/" . self::_getServerName().'.php';
         if (file_exists($lstrFilePath)) {
             $lstrFileData = file_get_contents($lstrFilePath);
             @eval($lstrFileData);
         } else {
-            $lbooReturn = false;
+            $lstrFilePath = "config/" . self::_getServerName();
+            if (file_exists($lstrFilePath)) {
+                $lstrFileData = file_get_contents($lstrFilePath);
+                @eval($lstrFileData);
+            } else {
+                $lbooReturn = false;
+            }
         }
         return $lbooReturn;
     }
