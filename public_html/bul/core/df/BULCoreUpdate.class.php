@@ -48,7 +48,11 @@ class BULCoreUpdate extends LIBBul
             case 'updateaction':
                 $lstrNew = LIBCore::getGet('strTag');
                 $lstrOld = LIBCore::getGet('strTagOld');
-                $lstrBefehl = "cd .. && sh update.sh '".$lstrOld."' '".$lstrNew."'";
+                if (is_dir('../updaterescue/'.$lstrOld)) {
+                    mkdir('../_updaterescue/'.$lstrOld);
+                }
+                $lstrBefehl = "cd .. && sh update.sh '".
+                    $lstrOld."' '".$lstrNew."'";
                 exec($lstrBefehl, $larrOutput);
                 break;
             case 'updaterescue':
