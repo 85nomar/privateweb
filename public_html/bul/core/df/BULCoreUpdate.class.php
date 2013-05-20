@@ -130,7 +130,6 @@ class BULCoreUpdate extends LIBBul
             if (in_array($lstrTag, $larrUpdateRescue)) {
                 $larrTempTagEnd['updaterescue'] = true;
             }
-
             $larrTags[$lstrKey] = $larrTempTagEnd;
 
         }
