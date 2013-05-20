@@ -3,13 +3,9 @@
 
     {include "$strBreadcrumbTemplate"}
 
-    {$L_AKTUELLEVERSION}: {$larrDaten.strVersion}
-
     <div class="row-fluid actionbar">
         <div class="span4">
-            <div class="input-prepend input-append">
-                {$L_AKTUELLEVERSION}: {$larrDaten.strVersion}
-            </div>
+            &nbsp;
         </div>
         <div class="span4 table-pagination">
             <div class="pagination pagination-centered">
