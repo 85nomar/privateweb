@@ -46,7 +46,7 @@
         <tbody>
             {if $larrDaten|@count > 0}
                 {foreach $larrDaten.arrTags AS $arrTag}
-                    <tr {if trim($arrTag.version) == $larrDaten.strVersion}class="racoretooltiptop success" title="{$L_AKTUELLEVERSION}"{/if}>
+                    <tr {if trim($arrTag.version) == $larrDaten.strVersion}class="racoretooltiptop success" title="{$L_AKTUELLEVERSION}"{elseif $arrTag.updaterescue}class="racoretooltiptop warning" title="{$L_ALTEVERSION}"{/if}>
                         <td>{$arrTag.version}</td>
                         <td>
                             <div class="icons">
