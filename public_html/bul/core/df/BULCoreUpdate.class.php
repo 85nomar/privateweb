@@ -3,6 +3,7 @@ namespace racore\bul\core\df;
 
 use racore\dbl\core\df\DBLCoreUser;
 use racore\phplibs\core\LIBBul;
+use racore\phplibs\core\LIBConfig;
 use racore\phplibs\core\LIBCore;
 use racore\phplibs\core\LIBDbl;
 use racore\uil\router\UIL_router;
@@ -157,27 +158,161 @@ class BULCoreUpdate extends LIBBul
 
     public function dbImport($pstrTagOld)
     {
+        $lstrSourceServer = LIBConfig::getSourceServer();
+        $lstrSourceDatabase = LIBConfig::getSourceDatabase();
+        $lstrSourceUser = LIBConfig::getSourceUser();
+        $lstrSourcePassword = LIBConfig::getSourcePassword();
+        $lstrServer = LIBConfig::getServer();
+        $lstrDatabase = LIBConfig::getDatabase();
+        $lstrUser = LIBConfig::getUser();
+        $lstrPassword = LIBConfig::getPassword();
+        $lstrDir = '_updaterescue/'.$pstrTagOld.'/';
+        $lstrTempDB = $lstrDatabase.'_'.$pstrTagOld;
+
+        $lbooReturn = true;
+        if (is_dir($lstrDir)) {
+
+            // Datenbank DB erstellen
+            $lstrFileName = $lstrDir.'backup.sql';
+            $lbooReturn = $this->dbDump(
+                $lstrServer,
+                $lstrDatabase,
+                $lstrUser,
+                $lstrPassword,
+                $lstrFileName
+            );
+
+            // Temporäre DB erstellen
+            if ($lbooReturn) {
+                $lbooReturn = $this->dbCreate(
+                    $lstrDatabase,
+                    $lstrTempDB,
+                    $lstrUser,
+                    $lstrPassword
+                );
+            }
+
+            // Content-Tables in Temp-DB einlesen
+            if ($lbooReturn) {
+                $lstrFileName = $lstrDir.'contenttable_source.sql';
+                $lbooReturn = $this->dbImportDump(
+                    $lstrDatabase,
+                    $lstrTempDB,
+                    $lstrUser,
+                    $lstrPassword,
+                    $lstrFileName
+                );
+            }
+
+            // DB Struktur Dumpen
+            if ($lbooReturn) {
+                $lstrFileName = $lstrDir.'struktur.xml';
+                $lbooReturn = $this->dbDumpStructureToXML(
+                    $lstrServer,
+                    $lstrDatabase,
+                    $lstrUser,
+                    $lstrPassword,
+                    $lstrFileName
+                );
+            }
+
+            // Strukturdaten einlesen
+
+
+
+
+
+
+
+
+
+        }
 
     }
 
-    public function dbDump($pstrTagOld)
+    public function dbDump( $pstrServer,
+                            $pstrDatabase,
+                            $pstrUser,
+                            $pstrPassword,
+                            $pstrFileName)
     {
+        $lstrBefehl =  "mysqldump --opt -h'".$pstrServer."' ";
+        $lstrBefehl .= "-u ".$pstrUser." --password='".$pstrPassword."' ";
+        $lstrBefehl .= $pstrDatabase." > ".$pstrFileName;
+        exec($lstrBefehl, $larrReturn);
+
+        if (!is_file($pstrFileName)) {
+            return false;
+        }
 
     }
 
-    public function dbTempCreate($pstrTagOld)
+    public function dbCreate( $pstrServer,
+                              $pstrDatabase,
+                              $pstrUser,
+                              $pstrPassword)
     {
-
+        $lbooReturn = false;
+        $lrefDB = $this->dbConnect($pstrServer, $pstrUser, $pstrPassword);
+        if ($lrefDB) {
+            mysql_query("CREATE DATABASE $pstrDatabase", $lrefDB);
+            if (mysql_select_db($pstrDatabase, $lrefDB)) {
+                $lbooReturn = true;
+            }
+        }
+        return $lbooReturn;
     }
 
-    public function dbImportDump($pstrTagOld)
+    public function dbConnect( $pstrServer, $pstrUser, $pstrPassword)
     {
-
+        $lbooReturn = false;
+        $lref = mysql_connect($pstrServer, $pstrUser, $pstrPassword);
+        if ($lref) {
+            $lbooReturn = true;
+        }
+        return $lbooReturn;
     }
 
-    public function dbDumpStructureToXML($pstrTagOld)
+    public function dbImportDump($pstrServer,
+                                 $pstrDatabase,
+                                 $pstrUser,
+                                 $pstrPassword,
+                                 $pstrFileName)
     {
+        $lbooReturn = false;
+        if (is_file($pstrFileName)) {
+            $lstrContent = file_get_contents($pstrFileName);
+            $lstrSearch =  "(DEFINER=`){1}([A-Za-z0-9]){1,}(`@`){1}";
+            $lstrSearch .= "([A-Za-z0-9_%]){1}(`){1}";
+            $lstrReplace = "DEFINER=`".$pstrUser."`@`".$pstrServer."` ";
+            $lstrContent = preg_replace(
+                '/'.$lstrSearch.'/', $lstrReplace, $lstrContent
+            );
+            file_put_contents($pstrFileName, $lstrContent);
+            $lstrBefehl =  "mysql -h'".$pstrServer."' ";
+            $lstrBefehl .= "-u ".$pstrUser." --password='".$pstrPassword."' ";
+            $lstrBefehl .= $pstrDatabase." < ".$pstrFileName;
+            exec($lstrBefehl, $larrReturn);
+            $lbooReturn = true;
+        }
+        return $lbooReturn;
+    }
 
+    public function dbDumpStructureToXML($pstrServer,
+                                         $pstrDatabase,
+                                         $pstrUser,
+                                         $pstrPassword,
+                                         $pstrFileName)
+    {
+        $lbooReturn = false;
+        $lstrBefehl =  "mysqldump --opt --no-data --xml -h'".$pstrServer."' ";
+        $lstrBefehl .= "-u ".$pstrUser." --password='".$pstrPassword."' ";
+        $lstrBefehl .= $pstrDatabase." > ".$pstrFileName;
+        exec($lstrBefehl);
+        if (is_file($pstrFileName)) {
+            $lbooReturn = true;
+        }
+        return $lbooReturn;
     }
 
     public function getDBChanges()
@@ -210,9 +345,26 @@ class BULCoreUpdate extends LIBBul
 
     }
 
-    public function loadXMLIntoArray()
+    public function loadXMLIntoArray($pstrFileName)
     {
+        $ladatabases = simplexml_load_file($pstrFileName);
+        $ladaten = array();
+        foreach ($ladatabases AS $ladatabase) {
+            foreach ($ladatabase AS $latable) {
+                $lstrTable = (string) $latable['name'];
+                if ($latable->options['Comment'] != 'VIEW') {
+                    foreach ($latable->field AS $laelement) {
+                        $lstrFeld = (string) $laelement['Field'];
+                        $ladaten[$lstrTable][$lstrFeld] = $lstrFeld;
 
+                    }
+                }
+            }
+        }
+
+
+
+        return $ladaten;
     }
 
     public function getKeyDrops()

@@ -173,6 +173,54 @@ final class LIBConfig
     }
 
     /**
+     * Gibt den Source-Server zurück
+     *
+     * @return string
+     * @access public
+     * @static
+     */
+    public static function getSourceServer()
+    {
+        return self::$_strSourceServer;
+    }
+
+    /**
+     * Gibt die Source-Database zurück
+     *
+     * @return string
+     * @access public
+     * @static
+     */
+    public static function getSourceDatabase()
+    {
+        return self::$_strSourceDatabase;
+    }
+
+    /**
+     * Gibt den Source-User zurück
+     *
+     * @return string
+     * @access public
+     * @static
+     */
+    public static function getSourceUser()
+    {
+        return self::$_strSourceUser;
+    }
+
+    /**
+     * Gibt das Source-Password zurück
+     *
+     * @return string
+     * @access public
+     * @static
+     */
+    public static function getSourcePassword()
+    {
+        return self::$_strSourcePassword;
+    }
+
+    /**
      * Gibt den Mandanten zurück
      *
      * @since 28.02.2013 06:05
