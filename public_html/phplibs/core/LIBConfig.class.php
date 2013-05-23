@@ -220,6 +220,16 @@ final class LIBConfig
         return self::$_strSourcePassword;
     }
 
+    public static function getContentTables()
+    {
+        return self::$_arrContentTables;
+    }
+
+    public static function getFullTables()
+    {
+        return self::$_arrFullTables;
+    }
+
     /**
      * Gibt den Mandanten zurück
      *
