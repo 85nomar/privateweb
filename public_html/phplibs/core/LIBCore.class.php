@@ -686,6 +686,17 @@ class LIBCore
         return $lstrReturn;
     }
 
+    public static function getBaseBUL()
+    {
+        $lstrReturn = '';
+        $lstrBul = LIBCore::getGet('strBul');
+        $larrBul = preg_split('/(?=[A-Z])/', $lstrBul);
+        if (isset($larrBul[1])) {
+            $lstrReturn = $larrBul[1];
+        }
+        return $lstrReturn;
+    }
+
     /**
      * Override the Constructer
      *

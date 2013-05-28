@@ -205,10 +205,11 @@ class UIL_html_df extends LIBUil
         $parrData, $pstrTemplate, $pstrAction = ''
     )
     {
-        $lstrTemplate = 'uil/html/template/core/';
+        $lstrBul = strtolower(LIBCore::getBaseBUL());
+        $lstrTemplate = 'uil/html/template/'.$lstrBul.'/';
         $lstrTemplate .= LIBCore::getGlobal('namensraum').'/'.$pstrTemplate;
         if (!file_exists($lstrTemplate)) {
-            $lstrTemplate = 'uil/html/template/core/df/'.$pstrTemplate;
+            $lstrTemplate = 'uil/html/template/'.$lstrBul.'/df/'.$pstrTemplate;
         }
 
         $lstrBreadcrumbTemplate = 'uil/html/template/core/';
