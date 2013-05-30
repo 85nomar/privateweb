@@ -116,6 +116,8 @@ class QYCoreUser extends DBLCoreUser
                     $lbooReturn = parent::delete($larrData);
                     LIBCore::cleanMessage(-1);
                     return $lbooReturn;
+                } else {
+                    return false;
                 }
             } else {
                 return false;

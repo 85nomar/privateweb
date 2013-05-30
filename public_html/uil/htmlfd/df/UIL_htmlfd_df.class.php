@@ -85,7 +85,7 @@ class UIL_htmlfd_df extends LIBUil
             $lsmarty->assign('FOOTER', $parrData['strFooter']);
             $lsmarty->assign('cssdebugger', LIBCore::getConfig('cssdebugger'));
             $lsmarty->display('uil/htmlfd/template/df/markup.tpl');
-            //return true;
+            return '';
         } else {
             return false;
         }

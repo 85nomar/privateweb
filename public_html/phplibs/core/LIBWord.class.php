@@ -56,6 +56,7 @@ class LIBWord extends \PHPWord
             return $template;
         } else {
             trigger_error('Template file '.$strFilename.' not found.');
+            return false;
         }
     }
 
@@ -79,7 +80,9 @@ class LIBWord extends \PHPWord
          */
         header('Content-Description: File Transfer');
         header('Content-type: application/force-download');
-        header('Content-Disposition: attachment; filename='.basename($lcfilename));
+        header(
+            'Content-Disposition: attachment; filename='.basename($lcfilename)
+        );
         header('Content-Transfer-Encoding: binary');
         header('Content-Length: '.filesize($lcfilename));
         readfile($lcfilename);

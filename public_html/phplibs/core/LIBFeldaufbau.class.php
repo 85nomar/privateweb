@@ -154,7 +154,6 @@ class LIBFeldaufbau
     {
         $lbooReturn = true;
         $larrWarning = array();
-        $lstrWarning = '<ul>';
         $ldbl = new LIBDbl();
         $ldbl->setTablename('core_validtyp');
         $larrFields = $this->getFields();
@@ -183,13 +182,6 @@ class LIBFeldaufbau
                     $lstrWarning .=
                         ' ('.LIBCore::getLabel('UNGUELTIGEZEICHEN').')';
                     array_push($larrWarning, $lstrWarning);
-
-                    /*
-                    $lstrWarning .= '<li>'.$lfeld->strLabel.' ';
-                    $lstrWarning .=
-                        '('.LIBCore::getLabel('UNGUELTIGEZEICHEN').')';
-                    $lstrWarning .= '</li>';
-                    */
                 }
             }
 
