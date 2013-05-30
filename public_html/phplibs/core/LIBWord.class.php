@@ -64,7 +64,7 @@ class LIBWord extends \PHPWord
     public function download($pcfilename = 'Example.docx')
     {
         $lcfilename = $pcfilename;
-        unset($pcpath, $pcfilename);
+        unset($pcfilename);
 
         /**
          * Aufbereitung des Dokumentes

@@ -145,6 +145,7 @@ class BULCoreUpdate extends LIBBul
         );
         $luilRouter->setDbl($this->getDbl());
         $luilRouter->route($larrDataTwo);
+        unset($lnumReturn);
         return $lbooReturn;
     }
 }

@@ -72,8 +72,8 @@
             }
             pagination.empty();
             if (pages > maxviewpages) {
-                pagination.append('<li><a><i class="icon-double-angle-left"></i></a></li>');
-                pagination.append('<li><a><i class="icon-angle-left"></i></a></li>');
+                pagination.append('<li><a href="#"><i class="icon-double-angle-left"></i></a></li>');
+                pagination.append('<li><a href="#"><i class="icon-angle-left"></i></a></li>');
             }
             if (page == 1) {
                 pagination.find('i.icon-double-angle-left').closest('li').addClass('disabled');
