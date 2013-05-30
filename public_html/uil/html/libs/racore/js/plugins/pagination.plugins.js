@@ -26,6 +26,11 @@
             pagedataview = pagedata;
         },
 
+        setPerPage: function(pperpage) {
+            perpage = pperpage;
+            this.init();
+        },
+
         init: function () {
             pagedata = $('table tbody tr').detach();
             pagedataview = pagedata;

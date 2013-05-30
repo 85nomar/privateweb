@@ -4,11 +4,23 @@
     {include "$strBreadcrumbTemplate"}
 
     <div class="row-fluid actionbar">
-        <div class="span4 table-action"><br>
+        <div class="span4 table-reorder-action input-prepend hide"><br>
+            <a data-post="true" class="btn" href="{$G_BASELINK}&strAction=updateSort"><i class="icon-save"></i> {$L_SPEICHERN}</a>
+            <a class="btn" href="#"><i class="icon-remove"></i></a>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <div class="row-fluid actionbar">
+
+        <div class="span4 table-action input-prepend"><br>
+            <a class="btn" href="#"><i class="icon-reorder"></i></a>
             {if $R_COREMENU_INSERT}
                 <a class="btn" href="{$G_BASELINK}&strAction=insertMask"><i class="icon-file"></i> {$L_NEU}</a>
                 {include "$strRightButtonTemplate" HASRIGHT=$RROLL_COREMENU_INSERT RIGHT='INSERT'}
             {/if}
+
         </div>
         <div class="span4 table-pagination">
             <div class="pagination pagination-centered">
@@ -27,9 +39,10 @@
             </div>
         </div>
 
+
     </div>
 
-    <table class="table table-bordered table-striped table-hover">
+    <table class="table table-bordered table-striped table-hover table-reorder">
 
         <colgroup>
             <col width="10%">

@@ -24,8 +24,8 @@
         /**
          * Hauptsortierung vornehmen (nur von aktueller Seite)
          */
-        var index = Number($('table.sortable tbody tr td:first-child').attr('sortfrom'));
-        $('table.sortable tbody tr').each(function() {
+        var index = Number($('table.table-reorder tbody tr td:first-child').attr('sortfrom'));
+        $('table.table-reorder tbody tr').each(function() {
             var i = $.inArray(this, $data);
             $this = $(this);
             $child = $this.children('td:first-child');
@@ -49,8 +49,6 @@
             }
         });
         $(this).pagination('setPageData', $($newdata));
-        $('#sortsavebutton').removeClass('disabled');
-
     }
 
     var methods = {
@@ -68,9 +66,9 @@
                 $form.attr('method', 'post');
                 var numOrder = 0;
                 $(this).pagination('getPageData').each(function() {
-                    $thisobj = $($(this)[0]).find("input[name='numOrder']");
-                    var id = $thisobj.val();
-                    var dataorder = $thisobj.closest('td').attr('data-order');
+                    $thistd = $(this).find('td:first-child');
+                    var id = $thistd.text();
+                    var dataorder = $thistd.attr('data-order');
                     $form.append('<input type="hidden" name="numOrder_'+dataorder+'" value="'+id+'">');
                 });
                 $form.submit();
@@ -78,24 +76,47 @@
             });
 
             /**
-             * Sortierungszeichen bei jeder Zeile anfügen
+             * Sortierungszeichen anfügen und aktivieren
              */
-            $('table.sortable tbody tr').each(function() {
-                $this = $(this);
-                $icons = $this.children('td:last-child').find('div.icons');
-                if ($('#searchfield').val() == '') {
-                    $icons.children('i.icon-reorder').remove();
-                    $iconreorder = $icons.append('<i class="icon-reorder"></i>');
-                    $('table.sortable tbody').sortable({
-                        helper: sizehelper,
-                        update: updatetablesort
-                    }).disableSelection();
-                    $('table.sortable tbody').sortable('enable');
-                } else {
-                    $icons.children('i.icon-reorder').remove();
-                    $('table.sortable tbody').sortable('disable');
-                }
+            $('i.icon-reorder').on('click', function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+                $('table.table-reorder tbody tr').each(function() {
+                    $this = $(this);
+                    $icons = $this.children('td:last-child').find('div.icons');
+                    if ($('#searchfield').val() == '') {
+                        $icons.children('i.icon-reorder').remove();
+                        $iconreorder = $icons.append('<i class="icon-reorder"></i>');
+                        $('table.table-reorder tbody').sortable({
+                            helper: sizehelper,
+                            update: updatetablesort
+                        }).disableSelection();
+                        $('table.table-reorder tbody').sortable('enable');
+
+                    } else {
+                        $icons.children('i.icon-reorder').remove();
+                        $('table.table-reorder tbody').sortable('disable');
+                    }
+                });
+                $('div.table-action, div.table-search, div.table-pagination').hide();
+                $('div.table-reorder-action').show();
+                $('table.table-reorder').pagination('setPerPage', 100);
+                $('table.table-reorder').pagination('showPage', 1);
             });
+
+            /**
+             * Sortierung wieder abbrechen
+             */
+            $('i.icon-remove').on('click', function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+                $('table.table-reorder tbody').sortable('disable');
+                $('div.table-reorder-action').hide();
+                $('div.table-action, div.table-search, div.table-pagination').show();
+                $('table.table-reorder').pagination('setPerPage', 10);
+                $('table.table-reorder').pagination('showPage', 1);
+            });
+
         }
     }
 

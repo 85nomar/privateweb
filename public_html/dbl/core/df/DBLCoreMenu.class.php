@@ -24,7 +24,7 @@ class DBLCoreMenu extends LIBDbl
     public function __construct()
     {
         $this->setTablename('core_menu');
-        $this->setOrderBy('strName');
+        $this->setOrderBy('numOrder, strName');
         $this->_createFeldaufbau();
         $lfab = $this->getFeldaufbau();
         $lfab->getField('numMenuID')->strValid = 'INTEGER';
@@ -61,7 +61,7 @@ class DBLCoreMenu extends LIBDbl
                                 '.LIBCore::getTableName('core_menu').' AS cmp
                         ON  cm.numParentMenuID = cmp.numMenuID';
         if ($this->getOrderBy() != '') {
-            $lstrQuery .= ' ORDER BY strParentMenuName,
+            $lstrQuery .= ' ORDER BY numOrder, strParentMenuName,
                             strBulName, ' . $this->getOrderBy();
         }
         if (LIBDB::query($lstrQuery)) {
