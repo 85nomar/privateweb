@@ -278,6 +278,7 @@ class LIBBul
             $lfab = $this->getDbl()->getFeldaufbau();
             $larrFab = $lfab->getFields();
             foreach ($larrFab AS $lstrKey => $larrField) {
+                unset($larrField);
                 $larrDBLData[$lstrKey] = '';
             }
             $larrDBLData = $this->_loadArrayData($larrDBLData);
@@ -390,6 +391,7 @@ class LIBBul
         if (!$pbooOnError) {
             $larrWhere = array();
             foreach ($larrFields AS $lstrKey => $larrValue) {
+                unset($larrValue);
                 if (isset($larrData[$lstrKey])) {
                     array_push($larrWhere, $lstrKey .' = '.$larrData[$lstrKey]);
                 }

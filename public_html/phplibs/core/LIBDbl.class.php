@@ -211,6 +211,7 @@ class LIBDbl
             $larrWhere = array();
             $larrDataDelete = array();
             foreach ($larrFields AS $lstrKey => $larrValue) {
+                unset($larrValue);
                 if (isset($larrData[$lstrKey])) {
                     array_push($larrWhere, $lstrKey .' = :'.$lstrKey);
                     $larrDataDelete[$lstrKey] = $larrData[$lstrKey];
@@ -335,8 +336,6 @@ class LIBDbl
         $larrUser = LIBCore::getSession('arrUser');
         $lfab = $this->getFeldaufbau();
         $larrFields = $lfab->getFields();
-        /** @var LIBFeldaufbauFeld $lfield */
-        $lfield = null;
 
         if (!$lfab->isValidData($larrData)) {
             return false;
@@ -344,6 +343,7 @@ class LIBDbl
             $larrInsertKeys = array();
             $larrInsertValues = array();
             foreach ($larrFields AS $lstrKey => $larrField) {
+                unset($larrField);
                 if (    $lstrKey !== 'numCreatorID'
                     AND $lstrKey !== 'numEditorID'
                     AND $lstrKey !== 'datCreate'
@@ -401,6 +401,7 @@ class LIBDbl
             $lstrPrimaryKey = LIBDB::getPrimaryKeyName($this->getTablename());
             $larrSet = array();
             foreach ($larrFields AS $lstrKey => $larrField) {
+                unset($larrField);
                 if (    $lstrKey !== 'numCreatorID'
                     AND $lstrKey !== 'numEditorID'
                     AND $lstrKey !== 'datCreate'

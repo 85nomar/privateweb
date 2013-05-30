@@ -62,6 +62,7 @@ class BULCoreUser extends LIBBul
             $larrFab = $lfab->getFields();
             /** @var LIBFeldaufbauFeld $larrField */
             foreach ($larrFab AS $lstrKey => $larrField) {
+                unset($larrField);
                 $larrDBLData[$lstrKey] = '';
             }
             $larrDBLData = $this->_loadArrayData($larrDBLData);

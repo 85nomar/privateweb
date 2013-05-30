@@ -47,14 +47,10 @@ class BULCoreUpdate extends LIBBul
         $luilRouter->setDbl($this->getDbl());
         switch($pstrData) {
             case 'updateaction':
-                $lstrNew = LIBCore::getGet('strTag');
                 $lstrOld = LIBCore::getGet('strTagOld');
                 if (!is_dir('../updaterescue/'.$lstrOld)) {
                     mkdir('../_updaterescue/'.$lstrOld);
                 }
-                $lstrBefehl = "cd .. && sh update.sh '".
-                    $lstrOld."' '".$lstrNew."'";
-                exec($lstrBefehl, $larrOutput);
                 $_GET = LIBCore::getGet();
                 LIBCore::loadGet();
                 unset($_GET['strTagOld']);
@@ -62,10 +58,6 @@ class BULCoreUpdate extends LIBBul
                 $this->_listMask();
                 break;
             case 'updaterescue':
-                $lstrOld = LIBCore::getGet('strTagOld');
-                $lstrBefehl = "cd .. && sh updaterescue.sh '".
-                    $lstrOld."' 'dbname'";
-                exec($lstrBefehl);
                 $_GET = LIBCore::getGet();
                 unset($_GET['strTagOld']);
                 unset($_GET['strTag']);
